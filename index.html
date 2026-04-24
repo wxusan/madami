@@ -1,0 +1,1315 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Madami Consulting — Global Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F6F1;
+    --bg-2: #EFEEE8;
+    --ink: #0C0C0C;
+    --ink-2: #1A1A1A;
+    --muted: #5A5A57;
+    --line: #1a1a1a14;
+    --green: #1F9D6B;
+    --green-2: #2FBF8F;
+    --mint: #BDEAD6;
+    --mint-soft: #E2F4EC;
+    --cream: #F1EFE6;
+    --yellow: #F3C340;
+    --dark-bg: #0d0d0d;
+    --dark-card: #181818;
+    --dark-border: rgba(255,255,255,0.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-family:"Geist","Helvetica Neue",Helvetica,Arial,sans-serif;font-feature-settings:"ss01","ss02","cv11";}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+  .wrap{max-width:1280px;margin:0 auto;padding:0 28px}
+  .serif{font-family:"Instrument Serif",ui-serif,Georgia,serif;font-weight:400;letter-spacing:-.01em}
+  .mono{font-family:"Geist Mono",ui-monospace,monospace;letter-spacing:.02em}
+  .eyebrow{font-family:"Geist Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:#ffffff80;backdrop-filter:blur(6px);font-size:12px}
+  .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px #1f9d6b1a;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 4px #1f9d6b1a}50%{box-shadow:0 0 0 8px #1f9d6b08}}
+
+  /* NAV */
+  .nav{position:fixed;top:18px;left:0;right:0;z-index:60;display:flex;justify-content:center;pointer-events:none}
+  .nav-inner{pointer-events:auto;display:flex;align-items:center;gap:10px;padding:10px 10px 10px 20px;background:#ffffffd9;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;box-shadow:0 1px 0 #ffffff80 inset,0 10px 30px #0000000f}
+  .nav .logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em}
+  .nav .logo .mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center;color:#fff;font-family:"Instrument Serif",serif;font-size:18px;line-height:1}
+  .nav ul{display:flex;align-items:center;gap:4px;list-style:none;margin-left:18px}
+  .nav ul a{padding:8px 14px;border-radius:999px;font-size:13.5px;color:#2a2a2a;transition:background .25s,color .25s}
+  .nav ul a:hover{background:#0000000a}
+  .nav ul a.active{color:var(--green)}
+  .nav .cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:10px 16px 10px 18px;border-radius:999px;font-size:13.5px;transition:transform .2s ease, background .2s}
+  .nav .cta:hover{transform:translateY(-1px);background:var(--green)}
+  .nav .cta .arr{width:22px;height:22px;border-radius:50%;background:#ffffff1a;display:grid;place-items:center;transition:transform .25s}
+  .nav .cta:hover .arr{transform:rotate(-45deg)}
+  @media (max-width:900px){.nav ul{display:none}}
+
+  /* HERO */
+  .hero{position:relative;padding:140px 0 80px;overflow:hidden}
+  .hero .bg-grid{position:absolute;inset:0;background-image:radial-gradient(#0000000a 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(180deg,#000 0%,#000 40%,transparent 100%);pointer-events:none}
+  .hero .blob{position:absolute;filter:blur(60px);opacity:.55;pointer-events:none;border-radius:50%}
+  .hero .blob.a{width:520px;height:520px;background:#8CE3BF;top:-160px;right:-120px;animation:float 14s ease-in-out infinite}
+  .hero .blob.b{width:380px;height:380px;background:#F3C340;bottom:-140px;left:-80px;opacity:.35;animation:float 18s ease-in-out -6s infinite}
+  @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-20px)}}
+
+  .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:60px;align-items:center;position:relative}
+  .hero h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(44px,7.2vw,104px);line-height:.98;letter-spacing:-.02em}
+  .hero h1 .line{display:block;overflow:hidden}
+  .hero h1 em{font-style:italic;color:var(--green)}
+  .hero h1 .under{position:relative;display:inline-block}
+  .hero h1 .under::after{content:"";position:absolute;left:-2px;right:-2px;bottom:.06em;height:.38em;background:var(--mint);z-index:-1;border-radius:4px;transform-origin:left;animation:hi .9s .8s ease both}
+  @keyframes hi{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .hero p.lead{margin-top:28px;color:var(--muted);font-size:18px;line-height:1.55;max-width:520px}
+  .hero .cta-row{margin-top:36px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;padding:16px 22px;border-radius:999px;font-size:14.5px;transition:transform .2s,background .2s}
+  .btn-primary:hover{background:var(--green);transform:translateY(-2px)}
+  .btn-primary .arr{width:26px;height:26px;border-radius:50%;background:#ffffff1a;display:grid;place-items:center;transition:transform .3s}
+  .btn-primary:hover .arr{transform:rotate(-45deg)}
+  .btn-video{display:inline-flex;align-items:center;gap:12px;padding:8px 20px 8px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;transition:background .2s}
+  .btn-video:hover{background:#fff}
+  .btn-video .play{width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;position:relative}
+  .btn-video .play::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--green);opacity:.4;animation:ring 2.2s linear infinite}
+  @keyframes ring{0%{transform:scale(.9);opacity:.6}100%{transform:scale(1.3);opacity:0}}
+  .btn-video .t{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1}
+  .btn-video .t small{font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+  .btn-video .t b{font-size:14px;font-weight:600}
+
+  .hero-meta{display:flex;gap:28px;margin-top:44px;flex-wrap:wrap}
+  .hero-meta .m{display:flex;flex-direction:column;gap:2px}
+  .hero-meta .m b{font-family:"Instrument Serif",serif;font-size:34px;line-height:1}
+  .hero-meta .m span{font-size:12px;color:var(--muted);letter-spacing:.02em}
+
+  /* Hero visual */
+  .hero-visual{position:relative;height:620px}
+  .card-stack{position:relative;height:100%;}
+  .big-card{position:absolute;inset:20px 40px 60px 40px;border-radius:28px;overflow:hidden;box-shadow:0 30px 80px #0000002e,0 2px 0 #ffffff40 inset;background:#222;transform:rotate(-2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .big-card:hover{transform:rotate(0) translateY(-4px)}
+  .big-card .ph{position:absolute;inset:0;background-image:url('assets/asad-nyc.png');background-size:cover;background-position:center}
+  .big-card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 60%, #000000a0 100%)}
+  .big-card .tag-city{position:absolute;right:18px;bottom:18px;color:#fff;font-family:"Instrument Serif",serif;font-size:22px;text-shadow:0 2px 18px #00000080}
+  .big-card .tag-city small{display:block;font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#fffc;margin-top:2px}
+  .big-card .brand{position:absolute;left:22px;top:22px;color:#fff;font-family:"Instrument Serif",serif;font-size:44px;line-height:.95;letter-spacing:-.01em;text-shadow:0 2px 12px #0006}
+  .big-card .brand b{font-style:italic;color:var(--yellow)}
+  .big-card .signature{position:absolute;left:28px;top:128px;color:var(--yellow);font-family:"Instrument Serif",serif;font-style:italic;font-size:26px;transform:rotate(-6deg);opacity:.95}
+  .big-card .reg{position:absolute;left:22px;bottom:80px;display:inline-flex;align-items:center;gap:10px}
+  .big-card .reg .chip{background:var(--yellow);color:#111;padding:6px 12px;border-radius:999px;font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.22em}
+  .big-card .reg .phone{color:#fff;font-family:"Geist Mono",monospace;font-size:11px;opacity:.9}
+  .big-card .portrait-rep{position:absolute;left:50%;top:55%;width:62%;height:45%;transform:translateX(-50%);background:
+    radial-gradient(ellipse at 50% 35%, #d8a683 0%, #a26c47 45%, transparent 70%),
+    linear-gradient(180deg, transparent 40%, #f6f3ea 65%);
+    filter:blur(2px);opacity:.85}
+
+  .mint-panel{position:absolute;right:-10px;bottom:0;width:72%;height:60%;background:var(--mint);border-radius:28px;z-index:-1}
+  .sticker{position:absolute;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 14px;box-shadow:0 10px 30px #0000001a;font-size:13px}
+  .sticker.s1{top:60px;left:-20px;transform:rotate(-6deg);animation:bob 5s ease-in-out infinite}
+  .sticker.s2{bottom:100px;right:-6px;transform:rotate(4deg);animation:bob 6s ease-in-out -2s infinite}
+  .sticker .av{display:flex}
+  .sticker .av i{width:22px;height:22px;border-radius:50%;border:2px solid #fff;background:linear-gradient(135deg,#ffd8a8,#e39b65);display:inline-block;margin-left:-6px}
+  .sticker .av i:first-child{margin-left:0}
+  .sticker b{font-weight:600}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-6px) rotate(var(--r,0deg))}}
+  .sticker.s1{--r:-6deg}.sticker.s2{--r:4deg}
+
+  .mini-card{position:absolute;left:-30px;bottom:40px;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 20px 40px #00000014;animation:bob 7s ease-in-out -1s infinite}
+  .mini-card .flag{width:44px;height:44px;border-radius:10px;background:#fff;position:relative;overflow:hidden;display:grid;place-items:center;font-size:28px;line-height:1}
+  .mini-card .flag::after{content:"🇺🇸";}
+  .mini-card b{font-family:"Instrument Serif",serif;font-size:20px;font-weight:400}
+  .mini-card span{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+  /* Marquee */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink);color:#fff;overflow:hidden;padding:22px 0;margin-top:60px}
+  .marquee .track{display:flex;gap:48px;white-space:nowrap;animation:scroll 30s linear infinite;font-family:"Instrument Serif",serif;font-size:40px;letter-spacing:-.01em}
+  .marquee .track span{display:inline-flex;align-items:center;gap:48px}
+  .marquee .track em{color:var(--green-2);font-style:italic}
+  .marquee .dot{width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* Sections shared */
+  section.block{padding:120px 0;position:relative}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:60px}
+  .section-head h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(36px,5vw,72px);line-height:1;letter-spacing:-.02em;max-width:780px}
+  .section-head h2 em{font-style:italic;color:var(--green)}
+  .section-head .right{max-width:360px;color:var(--muted);font-size:15px;line-height:1.55}
+
+  /* OFFER / Services */
+  .services-list{max-width:1100px;margin:0 auto}
+  .services-list .sl-intro{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:60px}
+  .services-list .sl-intro h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(44px,6vw,92px);line-height:.95;letter-spacing:-.02em}
+  .services-list .sl-intro h2 em{font-style:italic;color:var(--green)}
+  .services-list .sl-intro .sl-sub{color:var(--muted);font-size:16px;line-height:1.55;max-width:380px;padding-bottom:10px}
+  .sl-row{display:grid;grid-template-columns:80px 1.2fr 2fr auto;gap:32px;align-items:center;padding:36px 8px;border-top:1px solid var(--line);cursor:pointer;transition:background .3s, padding-left .3s}
+  .sl-row:last-child{border-bottom:1px solid var(--line)}
+  .sl-row:hover{background:#F7F6F1;padding-left:24px}
+  .sl-row .sl-num{font-family:"Geist Mono",monospace;font-size:13px;letter-spacing:.18em;color:var(--muted)}
+  .sl-row .sl-title{font-family:"Instrument Serif",serif;font-size:clamp(32px,3.6vw,48px);font-weight:400;line-height:1;letter-spacing:-.02em;color:var(--ink);display:flex;align-items:center;gap:14px}
+  .sl-row .sl-title em{font-style:italic;color:var(--green)}
+  .sl-row .sl-title .sl-flag{font-size:32px;line-height:1;filter:drop-shadow(0 2px 6px #00000018)}
+  .sl-row .sl-desc{font-size:15px;color:var(--muted);line-height:1.55;max-width:520px}
+  .sl-row .sl-arrow{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:background .3s, color .3s, transform .3s;color:var(--ink);flex:0 0 auto}
+  .sl-row:hover .sl-arrow{background:var(--green);color:#fff;border-color:var(--green);transform:rotate(-45deg)}
+  .sl-row.primary{background:#0b3d2a;color:#fff;border-color:#0b3d2a;border-radius:20px;margin-bottom:12px;padding:44px 28px}
+  .sl-row.primary:hover{background:#0b3d2a;padding-left:44px}
+  .sl-row.primary + .sl-row{border-top:1px solid var(--line)}
+  .sl-row.primary .sl-num{color:var(--green-2)}
+  .sl-row.primary .sl-title{color:#fff}
+  .sl-row.primary .sl-title em{color:var(--green-2)}
+  .sl-row.primary .sl-desc{color:#ffffffaa}
+  .sl-row.primary .sl-arrow{border-color:#ffffff2a;color:#fff}
+  .sl-row.primary:hover .sl-arrow{background:var(--green-2);color:#0b3d2a;border-color:var(--green-2)}
+  @media (max-width:1024px){
+    .services-list .sl-intro{grid-template-columns:1fr}
+    .sl-row{grid-template-columns:60px 1fr auto;grid-template-rows:auto auto;gap:16px 20px}
+    .sl-row .sl-num{grid-row:1;grid-column:1}
+    .sl-row .sl-title{grid-row:1;grid-column:2}
+    .sl-row .sl-desc{grid-row:2;grid-column:1 / span 2}
+    .sl-row .sl-arrow{grid-row:1 / span 2;grid-column:3;align-self:center}
+  }
+
+  /* Pricing */
+  .pricing{position:relative}
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .tier{position:relative;border:1px solid var(--line);background:#fff;border-radius:28px;padding:32px 28px 28px;display:flex;flex-direction:column;gap:20px;transition:transform .4s, box-shadow .4s;overflow:hidden}
+  .tier:hover{transform:translateY(-6px);box-shadow:0 20px 50px #00000014}
+  .tier.featured{background:linear-gradient(135deg,#f0fdf7 0%,#e8f9f2 100%);color:var(--ink);border:2px solid var(--green);transform:translateY(-14px)}
+  .tier.featured:hover{transform:translateY(-20px)}
+  .tier .tag{display:inline-flex;gap:8px;align-items:center;font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .tier.featured .tag{color:var(--green)}
+  .tier h4{font-family:"Instrument Serif",serif;font-size:30px;font-weight:400;letter-spacing:-.01em;line-height:1}
+  .tier .price{display:flex;align-items:baseline;gap:8px;margin-top:6px}
+  .tier .price .num{font-family:"Instrument Serif",serif;font-size:84px;line-height:.9;letter-spacing:-.03em}
+  .tier .price .num em{font-style:italic;color:var(--green)}
+  .tier.featured .price .num em{color:var(--green)}
+  .tier .price .per{font-size:12.5px;color:var(--muted)}
+  .tier.featured .price .per{color:var(--muted)}
+  .tier ul{list-style:none;display:grid;gap:12px;margin-top:6px}
+  .tier ul li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.4;padding-bottom:12px;border-bottom:1px dashed #0000001a}
+  .tier.featured ul li{border-color:#1f9d6b1a}
+  .tier ul li:last-child{border-bottom:0}
+  .tier ul li svg{flex:0 0 auto;margin-top:3px}
+  .tier .cta{margin-top:auto;display:inline-flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;border-radius:999px;background:var(--green);color:#fff;font-size:14px;transition:background .2s, transform .2s}
+  .tier.featured .cta{background:var(--green);color:#fff;box-shadow:0 8px 24px #1f9d6b30}
+  .tier .cta:hover{background:#0b3d2a;transform:translateY(-1px)}
+  .tier.featured .cta:hover{background:#0b3d2a;color:#fff}
+  .tier .ribbon{position:absolute;top:18px;right:18px;background:var(--green);color:#fff;font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
+
+  /* ── STAFF SCROLL FAN ─────────────────────────────── */
+  .staff-scroll-section{
+    position: relative;
+    height: 320vh;
+    padding: 0;
+  }
+
+  .staff-sticky{
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .staff-sticky .wrap{
+    position: relative;
+  }
+
+  .staff-stage{
+    position: relative;
+    height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+  }
+
+  /* Each staff card */
+  .sf-card{
+    position: absolute;
+    width: 300px;
+    height: 430px;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #f0ede4;
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 72px #00000020;
+    will-change: transform, opacity;
+    transform: translateY(70px) scale(0.84);
+    opacity: 0;
+    transition: transform 0.95s cubic-bezier(0.2,0.7,0.2,1), opacity 0.75s ease;
+  }
+
+  /* Desktop revealed states */
+  .sf-card[data-order="0"].show{
+    opacity: 1;
+    transform: translateX(0) rotate(0deg) scale(1);
+    z-index: 4;
+  }
+  .sf-card[data-order="1"].show{
+    opacity: 1;
+    transform: translateX(330px) rotate(4deg) scale(0.94);
+    z-index: 3;
+  }
+  .sf-card[data-order="2"].show{
+    opacity: 1;
+    transform: translateX(-330px) rotate(-4deg) scale(0.94);
+    z-index: 2;
+  }
+
+  /* Mobile: fan from center — side cards lean behind */
+  @media (max-width: 768px){
+    .staff-scroll-section{ height: 280vh; }
+    .staff-stage{ height: 380px; }
+    .sf-card{ width: 230px; height: 330px; border-radius: 22px; }
+
+    .sf-card[data-order="1"].show{
+      transform: translateX(34px) rotate(10deg) scale(0.95);
+      z-index: 2; /* behind center */
+      transform-origin: bottom center;
+    }
+    .sf-card[data-order="2"].show{
+      transform: translateX(-34px) rotate(-10deg) scale(0.95);
+      z-index: 2;
+      transform-origin: bottom center;
+    }
+  }
+
+  /* Card internals */
+  .sf-photo{
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center top;
+    background-color: #c9a788;
+  }
+  .sf-photo::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.75) 100%);
+  }
+  .sf-tag{
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(255,255,255,.88);
+    backdrop-filter: blur(8px);
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-family: "Geist Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    z-index: 3;
+    color: #111;
+  }
+  .sf-meta{
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    color: #fff;
+    z-index: 2;
+  }
+  .sf-meta b{
+    font-family: "Instrument Serif", serif;
+    font-size: 26px;
+    font-weight: 400;
+    display: block;
+    line-height: 1.1;
+  }
+  .sf-meta span{
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.65);
+    display: block;
+    margin-top: 5px;
+  }
+
+  /* Counter & hint */
+  .staff-counter{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: "Geist Mono", monospace;
+    font-size: 11px;
+    letter-spacing: .22em;
+    color: var(--muted);
+    pointer-events: none;
+    transition: opacity .4s;
+  }
+  .staff-counter b{ color: var(--green); }
+
+  .staff-hint{
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Geist Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity .5s;
+  }
+  .staff-hint.done{ opacity: 0; }
+  .staff-hint .sh-dot{
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    animation: pulse2 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse2{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.4}}
+
+  /* ── TESTIMONIALS DARK ──────────────────────────────── */
+  .reviews-dark{
+    background: var(--dark-bg);
+    color: #fff;
+    padding: 120px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Subtle green glow */
+  .reviews-dark::before{
+    content:"";
+    position:absolute;
+    width:600px;height:600px;
+    border-radius:50%;
+    background:radial-gradient(circle,#1f9d6b18 0%,transparent 70%);
+    top:-200px;right:-100px;
+    pointer-events:none;
+  }
+
+  .reviews-dark .eyebrow{ color: var(--green-2); }
+  .reviews-dark .section-head h2{ color: #fff; }
+  .reviews-dark .section-head h2 em{ color: var(--green-2); }
+  .reviews-dark .section-head .right{ color: rgba(255,255,255,.45); }
+
+  /* Featured 2-col grid */
+  .t-feat-grid{
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  @media(max-width:900px){ .t-feat-grid{ grid-template-columns:1fr; } }
+
+  /* Big feature card */
+  .t-main-card{
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 28px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-height: 360px;
+    transition: border-color .3s;
+  }
+  .t-main-card:hover{ border-color: rgba(31,157,107,.3); }
+  .t-main-card::before{
+    content:"\201C";
+    font-family:"Instrument Serif",serif;
+    font-size:180px;
+    line-height:1;
+    color: var(--green);
+    opacity:.1;
+    position:absolute;
+    top:-30px; left:28px;
+    pointer-events:none;
+    user-select:none;
+  }
+  .t-main-card .t-stars{
+    color: var(--yellow);
+    font-size:15px;
+    letter-spacing:3px;
+  }
+  .t-main-card .t-quote{
+    font-family:"Instrument Serif",serif;
+    font-size: clamp(22px,2.4vw,32px);
+    line-height: 1.28;
+    letter-spacing:-.01em;
+    color:#fff;
+    position:relative;
+    z-index:1;
+    flex:1;
+  }
+  .t-main-card .t-quote em{ font-style:italic; color:var(--green-2); }
+  .t-main-card .t-chip{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(31,157,107,.12);
+    border:1px solid rgba(31,157,107,.25);
+    padding:5px 12px;border-radius:999px;
+    font-family:"Geist Mono",monospace;font-size:10px;
+    letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green-2);
+    width:fit-content;
+  }
+  .t-main-card .t-person{
+    display:flex;align-items:center;gap:14px;
+    margin-top:auto;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.07);
+  }
+  .t-avatar{
+    flex:0 0 auto;
+    border-radius:50%;
+    overflow:hidden;
+    border:2px solid rgba(255,255,255,.12);
+    background: radial-gradient(ellipse at 50% 35%,#c9a788,#8e6246 60%);
+  }
+  .t-avatar img{ width:100%;height:100%;object-fit:cover;display:block; }
+  .t-main-card .t-avatar{ width:52px;height:52px; }
+  .t-name{ font-size:14.5px;font-weight:600;color:#fff;display:block;line-height:1.2; }
+  .t-school{ font-size:12px;color:rgba(255,255,255,.4);display:block;margin-top:3px; }
+
+  /* Side stack */
+  .t-side-stack{ display:flex;flex-direction:column;gap:16px; }
+  .t-side-card{
+    background: var(--dark-card);
+    border:1px solid var(--dark-border);
+    border-radius:22px;
+    padding:28px;
+    flex:1;
+    display:flex;flex-direction:column;gap:14px;
+    transition: border-color .3s, transform .3s;
+  }
+  .t-side-card:hover{ border-color:rgba(31,157,107,.3); transform:translateY(-3px); }
+  .t-side-card.green-card{
+    background: linear-gradient(135deg,#0b3d2a,#0f4f36);
+    border-color: rgba(47,191,143,.2);
+  }
+  .t-side-card .t-stars{ color:var(--yellow);font-size:12px;letter-spacing:2px; }
+  .t-side-card .t-quote{
+    font-family:"Instrument Serif",serif;
+    font-size:18px;line-height:1.38;
+    color:#fff;flex:1;
+  }
+  .t-side-card .t-quote em{ font-style:italic;color:var(--green-2); }
+  .t-side-card .t-person{
+    display:flex;align-items:center;gap:10px;
+    margin-top:auto;
+    padding-top:14px;
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  .t-side-card .t-avatar{ width:38px;height:38px; }
+  .t-side-card .t-school{ color:rgba(255,255,255,.35); }
+
+  /* Dark marquee strip */
+  .dark-marquee-wrap{
+    margin-top:20px;
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+    padding:20px 0;
+  }
+  .dark-marquee-track{
+    display:flex;gap:16px;width:max-content;
+    animation:rc-scroll 55s linear infinite;
+    will-change:transform;
+  }
+  .dark-marquee-wrap:hover .dark-marquee-track{ animation-play-state:paused; }
+  @keyframes rc-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  .dm-card{
+    flex:0 0 340px;
+    background:var(--dark-card);
+    border:1px solid var(--dark-border);
+    border-radius:22px;
+    padding:24px;
+    display:flex;flex-direction:column;gap:14px;
+    transition:transform .3s, border-color .3s;
+  }
+  .dm-card:hover{ transform:translateY(-3px);border-color:rgba(31,157,107,.25); }
+  .dm-card.dm-green{ background:linear-gradient(135deg,#0b2e1f,#0d3824); border-color:rgba(47,191,143,.15); }
+  .dm-card.dm-yellow{ background:linear-gradient(135deg,#1e1a0a,#241f0c); border-color:rgba(243,195,64,.1); }
+  .dm-card .dm-head{ display:flex;justify-content:space-between;align-items:center; }
+  .dm-card .dm-stars{ color:var(--yellow);font-size:12px;letter-spacing:2px; }
+  .dm-card .dm-chip{
+    display:inline-flex;align-items:center;gap:5px;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+    padding:4px 9px;border-radius:999px;
+    font-family:"Geist Mono",monospace;font-size:9.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:rgba(255,255,255,.4);
+  }
+  .dm-card .dm-chip .dg{ width:5px;height:5px;border-radius:50%;background:var(--green-2); }
+  .dm-card .dm-q{
+    font-family:"Instrument Serif",serif;
+    font-size:18px;line-height:1.35;
+    color:#fff;flex:1;
+  }
+  .dm-card .dm-q em{ font-style:italic;color:var(--green-2); }
+  .dm-card .dm-who{ display:flex;align-items:center;gap:10px;margin-top:auto; }
+  .dm-card .dm-av{
+    width:36px;height:36px;border-radius:50%;flex:0 0 auto;
+    overflow:hidden;
+    background:radial-gradient(ellipse at 50% 35%,#c9a788,#8e6246 60%);
+    border:2px solid rgba(255,255,255,.1);
+  }
+  .dm-card .dm-av img{ width:100%;height:100%;object-fit:cover; }
+  .dm-card .dm-who b{ font-size:13px;display:block;color:#fff;line-height:1.2;font-weight:600; }
+  .dm-card .dm-who span{ font-size:11px;color:rgba(255,255,255,.38); }
+
+  @media(max-width:768px){ .dm-card{ flex:0 0 260px; } }
+
+  /* Results — minimal row */
+  .results-mini{position:relative;padding:40px 0}
+  .results-mini .rm-head{max-width:780px;margin:0 auto 56px;text-align:center}
+  .results-mini .rm-head .eyebrow{display:inline-block;margin-bottom:18px}
+  .results-mini .rm-head h2{font-family:"Instrument Serif",serif;font-size:clamp(40px,5.5vw,80px);font-weight:400;line-height:.95;letter-spacing:-.02em}
+  .results-mini .rm-head h2 em{font-style:italic;color:var(--green)}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1000px;margin:0 auto}
+  .stat-row .s-item{padding-left:20px;border-left:3px solid var(--green);display:flex;flex-direction:column;gap:10px}
+  .stat-row .s-item .s-num{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(44px,5vw,72px);line-height:1;letter-spacing:-.02em;color:var(--ink)}
+  .stat-row .s-item .s-num em{font-style:italic;color:var(--green)}
+  .stat-row .s-item .s-lbl{font-size:14px;color:var(--muted);letter-spacing:.01em}
+  @media (max-width:768px){.stat-row{grid-template-columns:1fr;gap:28px}}
+
+  /* Form */
+  .form-block{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+  .form-left{background:#F7F6F1;border:1px solid var(--line);border-radius:32px;padding:44px;position:relative;overflow:hidden}
+  .form-left h3{font-family:"Instrument Serif",serif;font-size:56px;line-height:.95;letter-spacing:-.02em;font-weight:400;color:var(--ink)}
+  .form-left h3 em{font-style:italic;color:var(--green)}
+  .form-left p{color:var(--muted);margin-top:18px;font-size:15px;line-height:1.55;max-width:360px}
+  .form-left .contact-list{display:grid;gap:12px;margin-top:36px}
+  .form-left .contact-list .row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+  .form-left .contact-list .row .ic{width:36px;height:36px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center}
+  .form-left .contact-list .row b{display:block;font-size:14px;color:var(--ink)}
+  .form-left .contact-list .row span{font-size:12px;color:var(--muted)}
+  .form-left .badge{position:absolute;top:28px;right:28px;background:var(--green);color:#fff;border-radius:999px;padding:8px 14px;font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;display:flex;gap:8px;align-items:center}
+
+  .form-right{background:#fff;border:1px solid var(--line);border-radius:32px;padding:44px}
+  .form-right .eyebrow{color:var(--muted);margin-bottom:10px}
+  .form-right h4{font-family:"Instrument Serif",serif;font-size:36px;line-height:1;font-weight:400;letter-spacing:-.01em;margin-bottom:28px}
+  .field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;position:relative}
+  .field label{font-size:12px;color:var(--muted);font-family:"Geist Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+  .field input, .field select, .field textarea{font:inherit;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg);transition:border-color .2s, background .2s}
+  .field input:focus, .field select:focus, .field textarea:focus{outline:none;border-color:var(--green);background:#fff}
+  .field textarea{min-height:110px;resize:vertical}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+  .chips label{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-size:13px;cursor:pointer;transition:.2s}
+  .chips label:has(input:checked){background:var(--green);color:#fff;border-color:var(--green)}
+  .chips input{display:none}
+  .form-right button.submit{margin-top:8px;width:100%;background:var(--green);color:#fff;padding:18px;border-radius:999px;display:inline-flex;justify-content:center;align-items:center;gap:12px;font-size:15px;transition:background .2s, transform .2s}
+  .form-right button.submit:hover{background:#0b3d2a;transform:translateY(-2px)}
+
+  /* Footer */
+  footer{background:var(--ink);color:#fff;padding:80px 0 40px;margin-top:80px;position:relative;overflow:hidden}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+  .foot-grid .logo-big{font-family:"Instrument Serif",serif;font-size:120px;line-height:.9;letter-spacing:-.02em}
+  .foot-grid .logo-big em{font-style:italic;color:var(--green-2)}
+  .foot-grid h5{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff7;margin-bottom:18px}
+  .foot-grid ul{list-style:none;display:grid;gap:10px;font-size:14px}
+  .foot-grid ul a{color:#fffc;transition:color .2s}
+  .foot-grid ul a:hover{color:var(--green-2)}
+  .foot-bottom{margin-top:60px;padding-top:24px;border-top:1px solid #ffffff1a;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#fff7;font-family:"Geist Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+
+  /* Reveal */
+  [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  [data-reveal].in{opacity:1;transform:none}
+
+  @media (max-width:1024px){
+    .hero-grid{grid-template-columns:1fr;gap:80px}
+    .hero-visual{height:540px}
+    .tiers{grid-template-columns:1fr}
+    .tier.featured{transform:none}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .stat{border-right:0;border-bottom:1px solid #ffffff1f;padding:30px 0}
+    .form-block{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .foot-grid .logo-big{font-size:80px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="mark">M</span><span>Madami</span></a>
+    <ul>
+      <li><a href="#home" class="active">Bosh sahifa</a></li>
+      <li><a href="#services">Xizmatlar</a></li>
+      <li><a href="#pricing">Narxlar</a></li>
+      <li><a href="#team">Jamoa</a></li>
+      <li><a href="#reviews">Fikrlar</a></li>
+    </ul>
+    <a href="#contact" class="cta">Biz bilan bog'lanish <span class="arr">
+      <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </span></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="home" class="hero">
+  <div class="blob a"></div>
+  <div class="blob b"></div>
+  <div class="bg-grid"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill" data-reveal><span class="dot"></span> <span class="mono">EST. 2021 · 🇺🇸 American Education Experts</span></span>
+      <h1 style="margin-top:24px" data-reveal>
+        <span class="line">Your <em>American</em></span>
+        <span class="line"><span class="under">dream,</span></span>
+        <span class="line">engineered.</span>
+      </h1>
+      <p class="lead" data-reveal>Bizning konsalting kompaniyamiz talabalarga Amerika universitetlariga kirishda yordam berishga ixtisoslashgan — universitetdan viza hujjatlarigacha.</p>
+      <div class="cta-row" data-reveal>
+        <a href="#contact" class="btn-primary">Bog'lanish
+          <span class="arr">
+            <svg width="12" height="12" viewBox="0 0 10 10"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        <button class="btn-video" onclick="document.getElementById('video-modal').showModal()">
+          <span class="play"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M3 1.5v11l9-5.5-9-5.5Z"/></svg></span>
+          <span class="t"><small>Watch</small><b>Our story · 2:14</b></span>
+        </button>
+      </div>
+      <div class="hero-meta" data-reveal>
+        <div class="m"><b>60+</b><span>Students placed</span></div>
+        <div class="m"><b>12</b><span>Countries</span></div>
+        <div class="m"><b>93%</b><span>Visa success</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" data-reveal>
+      <div class="mint-panel"></div>
+      <div class="card-stack">
+        <div class="big-card" id="heroCard">
+          <div class="ph"></div>
+        </div>
+        <div class="sticker s1">
+          <div class="av"><i></i><i></i><i></i></div>
+          <span><b>100+</b> talaba</span>
+        </div>
+        <div class="sticker s2">
+          <span style="color:var(--green);font-weight:600">●</span>
+          <span>Online now · <b>Biz javob beramiz</b></span>
+        </div>
+        <div class="mini-card">
+          <div class="flag"></div>
+          <div><b>USA</b><span>American visa</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="track">
+    <span>Harvard <span class="dot"></span> MIT <span class="dot"></span> <em>Oxford</em> <span class="dot"></span> Cambridge <span class="dot"></span> Stanford <span class="dot"></span> <em>Toronto</em> <span class="dot"></span> UBC <span class="dot"></span> NYU <span class="dot"></span> Yale <span class="dot"></span> <em>UCL</em> <span class="dot"></span> Princeton <span class="dot"></span> McGill <span class="dot"></span></span>
+    <span aria-hidden="true">Harvard <span class="dot"></span> MIT <span class="dot"></span> <em>Oxford</em> <span class="dot"></span> Cambridge <span class="dot"></span> Stanford <span class="dot"></span> <em>Toronto</em> <span class="dot"></span> UBC <span class="dot"></span> NYU <span class="dot"></span> Yale <span class="dot"></span> <em>UCL</em> <span class="dot"></span> Princeton <span class="dot"></span> McGill <span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- OFFER -->
+<section id="services" class="block services-list">
+  <div class="wrap">
+    <div class="sl-intro" data-reveal>
+      <div>
+        <span class="eyebrow">01 — Biz taklif qilamiz</span>
+        <h2 style="margin-top:18px">Nima<br/>qilamiz. <em>Qisqa.</em></h2>
+      </div>
+      <p class="sl-sub">To'rtta xizmat — va har biri uchun biz shaxsan javobgarmiz. AQShda o'qish bosh ishimiz; viza rasmiylashtirish — qo'shimcha.</p>
+    </div>
+
+    <div data-reveal>
+      <a href="#contact" class="sl-row primary">
+        <div class="sl-num">01</div>
+        <div class="sl-title"><span class="sl-flag">🇺🇸</span>AQShda <em>o'qish</em></div>
+        <div class="sl-desc">Har bir talaba alohida tahlil qilinadi. Universitet tanlash, shaxsiy ariza strategiyasi, SAT / TOEFL / IELTS yo'nalishi, F-1 viza — boshidan oxirigacha professional yondashuv bilan.</div>
+        <div class="sl-arrow">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 14L14 4M14 4H6M14 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </a>
+
+      <a href="#contact" class="sl-row">
+        <div class="sl-num">02</div>
+        <div class="sl-title"><span class="sl-flag">🇬🇧</span>Buyuk Britaniya vizasi</div>
+        <div class="sl-desc">Turizm, biznes yoki oilaviy tashrif. Hujjatlar tahlili, cover letter, bank statement, sayohat rejasi va elchixona tayyorlovi — to'liq qo'llab-quvvatlash.</div>
+        <div class="sl-arrow">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 14L14 4M14 4H6M14 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </a>
+
+      <a href="#contact" class="sl-row">
+        <div class="sl-num">03</div>
+        <div class="sl-title"><span class="sl-flag">🇨🇦</span>Canada turistik viza</div>
+        <div class="sl-desc">TRV, 10-yillik multi. Biometriya, homiy hujjatlari, moliyaviy kafolat — aniq ketma-ketlik bilan tayyorlanadi. 3–4 hafta.</div>
+        <div class="sl-arrow">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 14L14 4M14 4H6M14 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </a>
+
+      <a href="#contact" class="sl-row">
+        <div class="sl-num">04</div>
+        <div class="sl-title">Shaxsiy <em>case tahlil</em></div>
+        <div class="sl-desc">Sizning holatiz alohida o'rganiladi — kuchli tomonlar, zaif nuqtalar, aniq tavsiyalar. DS-160 tekshiruvi va CEO Asad bilan jonli mock intervyu. Skript emas — haqiqiy tayyorgarlik.</div>
+        <div class="sl-arrow">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 14L14 4M14 4H6M14 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="block pricing" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">02 — Shaffof narxlar</span>
+        <h2 style="margin-top:14px">Bir marta to'lang —<br/><em>hamma narsa</em> ichida.</h2>
+      </div>
+      <div class="right">Yashirin to'lov yo'q. Sizga mos paketni tanlang, bir marta to'lang — biz birinchi kundan tamom bo'lgunga qadar yoningizda bo'lamiz.</div>
+    </div>
+
+    <div class="tiers" data-reveal>
+      <!-- Tier 1 -->
+      <div class="tier">
+        <span class="tag">● Intervyuga tayyorgarlik</span>
+        <h4>Interview Ready</h4>
+        <div class="price"><span class="num">$200</span><span class="per">bir martalik</span></div>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 1:1 mutaxassis konsultatsiyasi</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Ehtiyojlar va tayyorgarlik baholash</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 24-soatlik WhatsApp qo'llab-quvvatlash</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Mock intervyu va tayyor skriptlar</li>
+        </ul>
+        <a href="#contact" class="cta">Tanlash
+          <svg width="14" height="14" viewBox="0 0 10 10"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Tier 2 FEATURED -->
+      <div class="tier featured">
+        <span class="ribbon">Ko'p tanlanadi</span>
+        <span class="tag">● To'liq universitet qabul</span>
+        <h4>University Admission</h4>
+        <div class="price"><span class="num"><em>$3300</em></span><span class="per">bir martalik</span></div>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Intervyu va ariza tayyorlash to'liq</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Aeroportdan kutib olish va joylashtirish</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Bank Statement / Duolingo / IELTS yordam</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Stipendiya va uy-joy</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> O'qishgacha shaxsiy menejer</li>
+        </ul>
+        <a href="#contact" class="cta">Boshlash
+          <svg width="14" height="14" viewBox="0 0 10 10"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="tier">
+        <span class="tag">● AQSh vizasi uchun yordam</span>
+        <h4>USA Visa Support</h4>
+        <div class="price"><span class="num">$700</span><span class="per">bir martalik</span></div>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> DS-160 arizasini to'liq tayyorlash</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Hujjatlarni tekshirish va elchixona yozilish</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Mock intervyu mashqlari</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Javob kelgunga qadar 24-soatlik yordam</li>
+        </ul>
+        <a href="#contact" class="cta">Tanlash
+          <svg width="14" height="14" viewBox="0 0 10 10"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAFF SCROLL FAN ══════════════════════════════════ -->
+<section id="team" class="staff-scroll-section">
+  <div class="staff-sticky">
+    <div class="wrap" style="position:relative">
+
+      <!-- Header -->
+      <div class="section-head" style="margin-bottom:0">
+        <div>
+          <span class="eyebrow">03 — Jamoamiz</span>
+          <h2 style="margin-top:14px">Oz sonli. <em>Shaxsiy.</em><br/>Har birida o'z tarixi.</h2>
+        </div>
+        <div class="right" style="color:var(--muted)">Kichik jamoa. Har bir mijoz bilan shaxsan ishlash — bizning asosiy tamoyilimiz.</div>
+      </div>
+
+      <!-- Counter -->
+      <div class="staff-counter">
+        <b id="sf-idx">01</b> / 03 · <span id="sf-name">Asad Madaminov</span>
+      </div>
+
+      <!-- Fan stage -->
+      <div class="staff-stage">
+
+        <!-- Card 0 — Center (appears first) -->
+        <article class="sf-card" data-order="0">
+          <div class="sf-photo" style="background-image:url('uploads/pasted-1776895149186-0.png');background-color:#a07050"></div>
+          <span class="sf-tag">📍 New York City</span>
+          <div class="sf-meta">
+            <b>Asad Madaminov</b>
+            <span>Founder · NYU '21 alumnus</span>
+          </div>
+        </article>
+
+        <!-- Card 1 — Right (appears second) -->
+        <article class="sf-card" data-order="1">
+          <div class="sf-photo" style="background-image:url('uploads/pasted-1776895160861-0.png');background-color:#8a6040;background:radial-gradient(ellipse at 50% 35%,#d9b89a,#a57a56 55%,transparent 75%),linear-gradient(180deg,#f3eed8,#ddd3b2)"></div>
+          <span class="sf-tag">📍 Toshkent</span>
+          <div class="sf-meta">
+            <b>Co-founder</b>
+            <span>Operations · Embassy liaison</span>
+          </div>
+        </article>
+
+        <!-- Card 2 — Left (appears third) -->
+        <article class="sf-card" data-order="2">
+          <div class="sf-photo" style="background-image:url('uploads/pasted-1776895173025-0.png');background-color:#907060;background:radial-gradient(ellipse at 50% 35%,#c0917a,#8a5a40 55%,transparent 75%),linear-gradient(180deg,#ece6df,#cdc4b7)"></div>
+          <span class="sf-tag">📍 Boston</span>
+          <div class="sf-meta">
+            <b>Dilnoza R.</b>
+            <span>Admissions · Essay coach</span>
+          </div>
+        </article>
+
+      </div><!-- /staff-stage -->
+
+      <!-- Scroll hint -->
+      <div class="staff-hint" id="staff-hint">
+        <span class="sh-dot"></span> Scroll to meet the team
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS — DARK ════════════════════════════════ -->
+<section id="reviews" class="reviews-dark">
+  <div class="wrap">
+
+    <!-- Section head -->
+    <div class="section-head" data-reveal style="margin-bottom:52px">
+      <div>
+        <span class="eyebrow">04 — Haqiqiy talabalar</span>
+        <h2 style="margin-top:14px">Ular <em>nima</em> deyishadi,<br/>kelgandan keyin.</h2>
+      </div>
+      <div class="right">93% mamnuniyat — bu shior emas. Bu o'qishni boshlagandan bir yil keyin bizdan so'ralgan anonim so'rov natijasi.</div>
+    </div>
+
+    <!-- Featured grid: 1 big + 2 side -->
+    <div class="t-feat-grid" data-reveal>
+
+      <!-- Big featured quote -->
+      <article class="t-main-card">
+        <div class="t-stars">★★★★★</div>
+        <span class="t-chip">F-1 · $48K Scholarship</span>
+        <p class="t-quote">
+          "Ivy League'ga kirdim, stipendiya bilan — <em>men ishongan narsadan ko'proq</em>. Asad essays'imni o'qib, qaysi so'zni ishlatish kerakligini bilar ekan. Katta farq qildi."
+        </p>
+        <div class="t-person">
+          <div class="t-avatar" style="width:52px;height:52px">
+            <img src="uploads/pasted-1776895182685-0.png" alt="Muhammadaziz" onerror="this.style.display='none'" />
+          </div>
+          <div>
+            <b class="t-name">Muhammadaziz Tursunbaev</b>
+            <span class="t-school">Western New England University</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 side cards -->
+      <div class="t-side-stack">
+
+        <article class="t-side-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"Aeroport kutib olishdan kvartira tanlashgacha — <em>yonimda edilar</em>. Haqiqiy professionallar."</p>
+          <div class="t-person">
+            <div class="t-avatar" style="width:38px;height:38px;background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)">
+              <img src="uploads/pasted-1776895193367-0.png" alt="Durbek" onerror="this.style.display='none'" />
+            </div>
+            <div>
+              <b class="t-name">Durbek Yorqinov</b>
+              <span class="t-school">NYU · Computer Science</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="t-side-card green-card">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"Arizadan viza shtempeligacha — <em>besh oy</em>. Oilamiz qilgan eng yaxshi sarmoya."</p>
+          <div class="t-person">
+            <div class="t-avatar" style="width:38px;height:38px;background:radial-gradient(ellipse at 50% 35%,#d2a383,#8a5a3d 60%)">
+              <img src="uploads/pasted-1776895896821-0.png" alt="Javokhir" onerror="this.style.display='none'" />
+            </div>
+            <div>
+              <b class="t-name">Javokhir Rahimov</b>
+              <span class="t-school">Purdue University</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div><!-- /t-feat-grid -->
+
+    <!-- Scrolling marquee row -->
+    <div class="dark-marquee-wrap" data-reveal>
+      <div class="dark-marquee-track">
+
+        <!-- Set 1 -->
+        <article class="dm-card">
+          <div class="dm-head">
+            <span class="dm-stars">★★★★★</span>
+            <span class="dm-chip"><span class="dg"></span> Tourist Visa</span>
+          </div>
+          <p class="dm-q">"Mock intervyular <em>har qanday savolga</em> tayyorlagan. Zero nerves at embassy."</p>
+          <div class="dm-who">
+            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#c9a788,#8e6246 60%)">
+              <img src="uploads/pasted-1776897964922-0.png" alt="" onerror="this.style.display='none'" />
+            </div>
+            <div><b>Madina Abdullaeva</b><span>University of Toronto</span></div>
+          </div>
+        </article>
+
+        <article class="dm-card dm-green">
+          <div class="dm-head">
+            <span class="dm-stars">★★★★★</span>
+            <span class="dm-chip"><span class="dg"></span> F-1 · $48K Grant</span>
+          </div>
+          <p class="dm-q">"Essay'im uchun qaysi so'zni ishlatish kerakligini <em>bilar ekan</em>. Katta farq qildi."</p>
+          <div class="dm-who">
+            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)"></div>
+            <div><b>Laylo Karimova</b><span>Boston University</span></div>
+          </div>
+        </article>
+
+        <article class="dm-card">
+          <div class="dm-head">
+            <span class="dm-stars">★★★★★</span>
+            <span class="dm-chip"><span class="dg"></span> UK Tourist</span>
+          </div>
+          <p class="dm-q">"Va'da qilingan sanada <em>London'da edim</em>. Oila uchun ishonchli."</p>
+          <div class="dm-who">
+            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#d9b89a,#a57a56 60%)"></div>
+            <div><b>Nilufar Karimova</b><span>2 haftada rasmiylashgan</span></div>
+          </div>
+        </article>
+
+        <article class="dm-card dm-yellow">
+          <div class="dm-head">
+            <span class="dm-stars">★★★★★</span>
+            <span class="dm-chip"><span class="dg"></span> F-1 Visa</span>
+          </div>
+          <p class="dm-q">"Birinchi arizamdan qabul oldim — <em>Asad bilan ishlash</em> butunlay boshqacha tajriba."</p>
+          <div class="dm-who">
+            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#c0917a,#8a5a40 60%)"></div>
+            <div><b>Bobur Xasanov</b><span>University of Illinois</span></div>
+          </div>
+        </article>
+
+        <article class="dm-card dm-green">
+          <div class="dm-head">
+            <span class="dm-stars">★★★★★</span>
+            <span class="dm-chip"><span class="dg"></span> Canada TRV</span>
+          </div>
+          <p class="dm-q">"10-yillik Canada vizasini <em>3 haftada</em> oldim. Hujjatlar hammasi tayyor edi."</p>
+          <div class="dm-who">
+            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#d4c4a8,#9a8060 60%)"></div>
+            <div><b>Sardor Toshmatov</b><span>Toronto · 2024</span></div>
+          </div>
+        </article>
+
+        <article class="dm-card">
+          <div class="dm-head">
+            <span class="dm-stars">★★★★★</span>
+            <span class="dm-chip"><span class="dg"></span> F-1</span>
+          </div>
+          <p class="dm-q">"Asad o'zi tushuntirdi — hech narsa <em>yashirin emas</em>. Ishonchli odam."</p>
+          <div class="dm-who">
+            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)"></div>
+            <div><b>Zulfiya Normatova</b><span>NYU · Nursing</span></div>
+          </div>
+        </article>
+
+        <!-- Set 2 (duplicate for seamless loop) -->
+        <article class="dm-card" aria-hidden="true">
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> Tourist Visa</span></div>
+          <p class="dm-q">"Mock intervyular <em>har qanday savolga</em> tayyorlagan. Zero nerves at embassy."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#c9a788,#8e6246 60%)"></div><div><b>Madina Abdullaeva</b><span>University of Toronto</span></div></div>
+        </article>
+        <article class="dm-card dm-green" aria-hidden="true">
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> F-1 · $48K Grant</span></div>
+          <p class="dm-q">"Essay'im uchun qaysi so'zni ishlatish kerakligini <em>bilar ekan</em>. Katta farq qildi."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)"></div><div><b>Laylo Karimova</b><span>Boston University</span></div></div>
+        </article>
+        <article class="dm-card" aria-hidden="true">
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> UK Tourist</span></div>
+          <p class="dm-q">"Va'da qilingan sanada <em>London'da edim</em>. Oila uchun ishonchli."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#d9b89a,#a57a56 60%)"></div><div><b>Nilufar Karimova</b><span>2 haftada rasmiylashgan</span></div></div>
+        </article>
+        <article class="dm-card dm-yellow" aria-hidden="true">
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> F-1 Visa</span></div>
+          <p class="dm-q">"Birinchi arizamdan qabul oldim — <em>Asad bilan ishlash</em> butunlay boshqacha tajriba."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#c0917a,#8a5a40 60%)"></div><div><b>Bobur Xasanov</b><span>University of Illinois</span></div></div>
+        </article>
+        <article class="dm-card dm-green" aria-hidden="true">
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> Canada TRV</span></div>
+          <p class="dm-q">"10-yillik Canada vizasini <em>3 haftada</em> oldim. Hujjatlar hammasi tayyor edi."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#d4c4a8,#9a8060 60%)"></div><div><b>Sardor Toshmatov</b><span>Toronto · 2024</span></div></div>
+        </article>
+        <article class="dm-card" aria-hidden="true">
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> F-1</span></div>
+          <p class="dm-q">"Asad o'zi tushuntirdi — hech narsa <em>yashirin emas</em>. Ishonchli odam."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)"></div><div><b>Zulfiya Normatova</b><span>NYU · Nursing</span></div></div>
+        </article>
+
+      </div>
+    </div><!-- /dark-marquee-wrap -->
+
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="block results-mini" style="padding-top:20px">
+  <div class="wrap">
+    <div class="rm-head" data-reveal>
+      <span class="eyebrow">05 — Natijalarimiz</span>
+      <h2>Sokin ish.<br/><em>Baland natijalar.</em></h2>
+    </div>
+    <div class="stat-row" data-reveal>
+      <div class="s-item">
+        <div class="s-num">100<em>+</em></div>
+        <div class="s-lbl">Mijozlar — 2021-yildan beri</div>
+      </div>
+      <div class="s-item">
+        <div class="s-num">$7MLN<em>+</em></div>
+        <div class="s-lbl">Scholarship — yutib olindi</div>
+      </div>
+      <div class="s-item">
+        <div class="s-num">93<em>%</em></div>
+        <div class="s-lbl">Mamnuniyat — anonim so'rov</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section id="contact" class="block">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">06 — Navbat sizda</span>
+        <h2 style="margin-top:14px">Ma'lumotingizni qoldiring —<br/><em>biz qo'ng'iroq qilamiz.</em></h2>
+      </div>
+      <div class="right">Bepul 20-daqiqalik konsultatsiya. Hech qanday bosim yo'q — faqat halol maslahat va keyingi qadamlar.</div>
+    </div>
+
+    <div class="form-block" data-reveal>
+      <div class="form-left">
+        <h3>Savolingiz<br/>bormi? <em>Yozing.</em></h3>
+        <p>Javobni 24 soat ichida olasiz. Biz har bir ariza bilan shaxsan ishlaymiz — chatbot yo'q, avtomatik xat yo'q.</p>
+        <div class="contact-list">
+          <div class="row">
+            <div class="ic">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 7l9 6 9-6M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7a2 2 0 012-2h14a2 2 0 012 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <div><b>@madami_consulting</b><span>Telegram</span></div>
+          </div>
+          <div class="row">
+            <div class="ic">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.8.6 2.7a2 2 0 01-.5 2.1L8 9.7a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.5c.9.3 1.8.5 2.7.6a2 2 0 011.7 2.1z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div><b>+1 608 421 9199</b><span>WhatsApp / Telegram</span></div>
+          </div>
+          <div class="row">
+            <div class="ic">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-7-7-12a7 7 0 0114 0c0 5-7 12-7 12z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <div><b>New York · Toshkent</b><span>Ikki ofis, bir jamoa</span></div>
+          </div>
+        </div>
+      </div>
+
+      <form class="form-right" onsubmit="event.preventDefault();this.querySelector('button.submit').innerHTML='<span>Yuborildi — tez orada javob beramiz ✓</span>'">
+        <span class="eyebrow">Yangi ariza</span>
+        <h4>Birinchi qadamni tashlang.</h4>
+
+        <div class="row2">
+          <div class="field">
+            <label>Ism familiya</label>
+            <input type="text" placeholder="Asad Madaminov" required />
+          </div>
+          <div class="field">
+            <label>Telefon</label>
+            <input type="tel" placeholder="+998 ..." required />
+          </div>
+        </div>
+        <div class="field">
+          <label>Telegram username</label>
+          <input type="text" placeholder="@username" required />
+        </div>
+        <div class="field">
+          <label>Yo'nalish</label>
+          <div class="chips">
+            <label><input type="radio" name="dest" checked> 🇺🇸 USA</label>
+            <label><input type="radio" name="dest"> 🇬🇧 UK</label>
+            <label><input type="radio" name="dest"> 🇨🇦 Canada</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Qanday yordam kerak?</label>
+          <textarea placeholder="Masalan: F-1 vizaga tayyorgarlik, universitetga qabul, stipendiya..."></textarea>
+        </div>
+        <button type="submit" class="submit">
+          Arizani yuborish
+          <svg width="14" height="14" viewBox="0 0 10 10"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo-big">Madami<br/><em>Consulting.</em></div>
+        <div style="margin-top:20px;color:#fff9;font-size:14px;max-width:360px;line-height:1.55">Talabalarni Amerika universitetlariga muvaffaqiyatli yo'naltirish — bizning vazifamiz.</div>
+      </div>
+      <div>
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Destinations</h5>
+        <ul>
+          <li><a href="#">United States</a></li>
+          <li><a href="#">United Kingdom</a></li>
+          <li><a href="#">Canada</a></li>
+          <li><a href="#">Language schools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="#">madaminovasadulloh2002@gmail.com</a></li>
+          <li><a href="#">+1 608 421 9199</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Madami Consulting. All rights reserved.</span>
+      <span>Made with intent — New York × Tashkent</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Video modal -->
+<dialog id="video-modal" style="border:0;border-radius:24px;padding:0;overflow:hidden;max-width:920px;width:90%;aspect-ratio:16/9;background:#000;box-shadow:0 40px 120px #0009">
+  <button onclick="this.closest('dialog').close()" style="position:absolute;top:14px;right:14px;z-index:2;background:#ffffff20;color:#fff;border-radius:999px;padding:8px 14px;font:inherit;border:1px solid #ffffff30">Close ✕</button>
+  <div style="display:grid;place-items:center;height:100%;color:#fff;font-family:Instrument Serif,serif;font-size:40px;text-align:center;padding:40px">Video placeholder<br/><span style="font-size:14px;font-family:Geist,sans-serif;opacity:.6;letter-spacing:.2em;text-transform:uppercase">Intro reel · 2:14</span></div>
+</dialog>
+
+<script>
+  // ── Reveal on scroll ───────────────────────────────────
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) }})
+  },{threshold:.12});
+  document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+
+  // ── Hero card parallax ─────────────────────────────────
+  const card = document.getElementById('heroCard');
+  const heroV = card?.closest('.hero-visual');
+  heroV?.addEventListener('mousemove',(e)=>{
+    const r = heroV.getBoundingClientRect();
+    const x = (e.clientX - r.left)/r.width - .5;
+    const y = (e.clientY - r.top)/r.height - .5;
+    card.style.transform = `rotate(${-2 + x*3}deg) translate3d(${x*10}px, ${y*10}px, 0)`;
+  });
+  heroV?.addEventListener('mouseleave',()=>{card.style.transform=''});
+
+  // ── Nav active ─────────────────────────────────────────
+  const links = document.querySelectorAll('.nav ul a');
+  const sections = [...document.querySelectorAll('section[id],header[id]')];
+  window.addEventListener('scroll',()=>{
+    const y = window.scrollY + 200;
+    let active = sections[0]?.id;
+    sections.forEach(s=>{ if(s.offsetTop <= y) active = s.id });
+    links.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#'+active));
+  },{passive:true});
+
+  // ── Staff Scroll Fan ───────────────────────────────────
+  (function initStaffFan(){
+    const section  = document.querySelector('.staff-scroll-section');
+    const cards    = section ? [...section.querySelectorAll('.sf-card')] : [];
+    const idxEl    = document.getElementById('sf-idx');
+    const nameEl   = document.getElementById('sf-name');
+    const hintEl   = document.getElementById('staff-hint');
+
+    const names = ['Asad Madaminov', 'Co-founder', 'Dilnoza R.'];
+
+    if(!section || !cards.length) return;
+
+    function update(){
+      const rect       = section.getBoundingClientRect();
+      const sectionH   = section.offsetHeight;
+      const winH       = window.innerHeight;
+      const scrolled   = Math.max(0, -rect.top);
+      const scrollable = sectionH - winH;
+      const progress   = scrollable > 0 ? Math.min(1, scrolled / scrollable) : 0;
+
+      // 3 cards: thresholds 0 / 0.35 / 0.68
+      const thresholds = [0, 0.35, 0.68];
+      let lastVisible  = -1;
+
+      cards.forEach((c, i) => {
+        const show = progress >= thresholds[i];
+        c.classList.toggle('show', show);
+        if(show) lastVisible = i;
+      });
+
+      // Update counter label
+      if(idxEl && lastVisible >= 0){
+        idxEl.textContent = String(lastVisible + 1).padStart(2,'0');
+        if(nameEl) nameEl.textContent = names[lastVisible] || '';
+      }
+
+      // Hide hint once all cards shown
+      if(hintEl){
+        hintEl.classList.toggle('done', progress >= 0.85);
+      }
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    // Trigger once on load for in-view case
+    update();
+  })();
+</script>
+
+</body>
+</html>
