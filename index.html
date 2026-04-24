@@ -117,8 +117,9 @@
   .sticker.s1{top:60px;left:-20px;transform:rotate(-6deg);animation:bob 5s ease-in-out infinite}
   .sticker.s2{bottom:100px;right:-6px;transform:rotate(4deg);animation:bob 6s ease-in-out -2s infinite}
   .sticker .av{display:flex}
-  .sticker .av i{width:22px;height:22px;border-radius:50%;border:2px solid #fff;background:linear-gradient(135deg,#ffd8a8,#e39b65);display:inline-block;margin-left:-6px}
-  .sticker .av i:first-child{margin-left:0}
+  .sticker .av img{width:22px;height:22px;border-radius:50%;border:2px solid #fff;object-fit:cover;display:block;margin-left:-6px;background:#fff}
+  .sticker .av img:first-child{margin-left:0}
+  .sticker .av img:last-child{z-index:1}
   .sticker b{font-weight:600}
   @keyframes bob{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-6px) rotate(var(--r,0deg))}}
   .sticker.s1{--r:-6deg}.sticker.s2{--r:4deg}
@@ -216,7 +217,7 @@
   /* ── STAFF SCROLL FAN ─────────────────────────────── */
   .staff-scroll-section{
     position: relative;
-    height: 320vh;
+    height: 360vh;
     padding: 0;
   }
 
@@ -242,6 +243,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 32px;
+    transition: transform .8s cubic-bezier(.2,.7,.2,1), margin-top .8s cubic-bezier(.2,.7,.2,1);
   }
 
   /* Each staff card */
@@ -260,7 +262,7 @@
     transition: transform 0.95s cubic-bezier(0.2,0.7,0.2,1), opacity 0.75s ease;
   }
 
-  /* Desktop revealed states */
+  /* Staff reveal states */
   .sf-card[data-order="0"].show{
     opacity: 1;
     transform: translateX(0) rotate(0deg) scale(1);
@@ -268,30 +270,134 @@
   }
   .sf-card[data-order="1"].show{
     opacity: 1;
-    transform: translateX(330px) rotate(4deg) scale(0.94);
-    z-index: 3;
+    transform: translateX(250px) translateY(34px) rotate(8deg) scale(0.92);
+    z-index: 2;
+    transform-origin: bottom center;
   }
   .sf-card[data-order="2"].show{
     opacity: 1;
-    transform: translateX(-330px) rotate(-4deg) scale(0.94);
-    z-index: 2;
+    transform: translateX(-250px) translateY(34px) rotate(-8deg) scale(0.92);
+    z-index: 1;
+    transform-origin: bottom center;
   }
 
-  /* Mobile: fan from center — side cards lean behind */
+  .staff-scroll-section.roster-phase .staff-stage{
+    transform:translateY(-22px) scale(.9);
+    margin-top:20px;
+  }
+
+  .staff-roster{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:12px;
+    max-width:860px;
+    margin:-18px auto 0;
+    opacity:0;
+    transform:translateY(22px);
+    pointer-events:none;
+    transition:opacity .55s ease, transform .75s cubic-bezier(.2,.7,.2,1);
+  }
+  .staff-scroll-section.roster-phase .staff-roster{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .staff-person{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-height:64px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:rgba(255,255,255,.84);
+    box-shadow:0 14px 34px #0000000d;
+    backdrop-filter:blur(8px);
+  }
+  .staff-person .sp-av{
+    width:44px;
+    height:44px;
+    flex:0 0 auto;
+    border-radius:50%;
+    border:2px solid #fff;
+    background-size:cover;
+    background-position:center top;
+    box-shadow:0 5px 14px #0000001f;
+  }
+  .staff-person b{
+    display:block;
+    font-size:14px;
+    line-height:1.08;
+    font-weight:600;
+  }
+  .staff-person span{
+    display:block;
+    margin-top:4px;
+    font-family:"Geist Mono",monospace;
+    font-size:9.5px;
+    line-height:1.2;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .staff-person .sp-num{
+    margin-left:auto;
+    font-family:"Geist Mono",monospace;
+    font-size:10px;
+    letter-spacing:.12em;
+    color:var(--green);
+    font-weight:600;
+  }
+
+  /* Mobile: first spotlight, then fan, then roster */
   @media (max-width: 768px){
-    .staff-scroll-section{ height: 280vh; }
-    .staff-stage{ height: 380px; }
-    .sf-card{ width: 230px; height: 330px; border-radius: 22px; }
+    .staff-scroll-section{ height: 360vh; }
+    .staff-sticky .wrap{width:100%}
+    .staff-stage{
+      height: 320px;
+      margin-top: 22px;
+    }
+    .sf-card{ width: 210px; height: 295px; border-radius: 20px; }
 
     .sf-card[data-order="1"].show{
-      transform: translateX(34px) rotate(10deg) scale(0.95);
+      transform: translateX(74px) translateY(22px) rotate(10deg) scale(0.88);
       z-index: 2; /* behind center */
       transform-origin: bottom center;
     }
     .sf-card[data-order="2"].show{
-      transform: translateX(-34px) rotate(-10deg) scale(0.95);
-      z-index: 2;
+      transform: translateX(-74px) translateY(22px) rotate(-10deg) scale(0.88);
+      z-index: 1;
       transform-origin: bottom center;
+    }
+
+    .staff-scroll-section.roster-phase .staff-stage{
+      transform: translateY(-8px) scale(.9);
+      margin-top: 12px;
+    }
+
+    .staff-roster{
+      grid-template-columns:1fr;
+      gap:8px;
+      max-width:360px;
+      margin:-10px auto 0;
+    }
+    .staff-person{
+      gap:10px;
+      min-height:52px;
+      padding:8px 10px;
+      border-radius:16px;
+    }
+    .staff-person .sp-av{
+      width:36px;
+      height:36px;
+    }
+    .staff-person b{
+      font-size:13px;
+    }
+    .staff-person span{
+      margin-top:3px;
+      font-size:9px;
+      line-height:1.15;
     }
   }
 
@@ -904,11 +1010,17 @@
 
   /* ── Staff scroll section ── */
   @media(max-width:640px){
-    .staff-scroll-section{height:260vh}
-    /* Card must be shorter than stage — original 768px sets card 330px, stage 380px.
-       Scale both down proportionally for small phones. */
-    .sf-card{width:210px;height:295px;border-radius:20px}
-    .staff-stage{height:340px}
+    .staff-scroll-section{height:360vh}
+    .sf-card{width:190px;height:268px;border-radius:20px}
+    .staff-stage{height:290px;margin-top:18px}
+    .staff-scroll-section.roster-phase .staff-stage{
+      transform:translateY(-6px) scale(.9);
+      margin-top:10px;
+    }
+    .staff-roster{gap:6px;margin:-8px auto 0}
+    .staff-person{min-height:48px;padding:6px 9px}
+    .staff-person .sp-av{width:34px;height:34px}
+    .staff-person span{font-size:8.5px}
     .staff-sticky .section-head{flex-direction:column;align-items:flex-start;gap:16px}
     .staff-sticky .section-head .right{max-width:100%}
   }
@@ -1007,7 +1119,11 @@
           <div class="ph"></div>
         </div>
         <div class="sticker s1">
-          <div class="av"><i></i><i></i><i></i></div>
+          <div class="av">
+            <img src="assets/student-1.jpg" alt="Madami student">
+            <img src="assets/student-2.jpg" alt="Madami student">
+            <img src="assets/student-3.jpg" alt="Madami student">
+          </div>
           <span><b>100+</b> talaba</span>
         </div>
         <div class="sticker s2">
@@ -1239,6 +1355,24 @@
         </article>
 
       </div><!-- /staff-stage -->
+
+      <div class="staff-roster" id="staff-roster" aria-hidden="true">
+        <div class="staff-person">
+          <span class="sp-av" style="background-image:url('uploads/pasted-1776895149186-0.png')"></span>
+          <div><b>Asad Madaminov</b><span>Founder · NYU '21 alumnus</span></div>
+          <span class="sp-num">01</span>
+        </div>
+        <div class="staff-person">
+          <span class="sp-av" style="background-image:url('uploads/pasted-1776895160861-0.png')"></span>
+          <div><b>Co-founder</b><span>Operations · Embassy liaison</span></div>
+          <span class="sp-num">02</span>
+        </div>
+        <div class="staff-person">
+          <span class="sp-av" style="background-image:url('uploads/pasted-1776895173025-0.png')"></span>
+          <div><b>Dilnoza R.</b><span>Admissions · Essay coach</span></div>
+          <span class="sp-num">03</span>
+        </div>
+      </div>
 
       <!-- Scroll hint -->
       <div class="staff-hint" id="staff-hint">
@@ -1524,6 +1658,7 @@
     const idxEl    = document.getElementById('sf-idx');
     const nameEl   = document.getElementById('sf-name');
     const hintEl   = document.getElementById('staff-hint');
+    const rosterEl = document.getElementById('staff-roster');
 
     const names = ['Asad Madaminov', 'Co-founder', 'Dilnoza R.'];
 
@@ -1536,10 +1671,13 @@
       const scrolled   = Math.max(0, -rect.top);
       const scrollable = sectionH - winH;
       const progress   = scrollable > 0 ? Math.min(1, scrolled / scrollable) : 0;
+      const fanAt      = 0.30;
+      const rosterAt   = 0.64;
 
-      // 3 cards: thresholds 0 / 0.35 / 0.68
-      const thresholds = [0, 0.35, 0.68];
+      // Spotlight -> fan -> roster on every viewport.
+      const thresholds = [0, fanAt, fanAt];
       let lastVisible  = -1;
+      const rosterPhase = progress >= rosterAt;
 
       cards.forEach((c, i) => {
         const show = progress >= thresholds[i];
@@ -1547,19 +1685,26 @@
         if(show) lastVisible = i;
       });
 
-      // Update counter label
-      if(idxEl && lastVisible >= 0){
-        idxEl.textContent = String(lastVisible + 1).padStart(2,'0');
-        if(nameEl) nameEl.textContent = names[lastVisible] || '';
+      section.classList.toggle('roster-phase', rosterPhase);
+      if(rosterEl){
+        rosterEl.setAttribute('aria-hidden', rosterPhase ? 'false' : 'true');
       }
 
-      // Hide hint once all cards shown
+      // Update counter label
+      if(idxEl && lastVisible >= 0){
+        const fullTeam = progress >= fanAt;
+        idxEl.textContent = fullTeam ? '03' : String(lastVisible + 1).padStart(2,'0');
+        if(nameEl) nameEl.textContent = fullTeam ? 'Full team' : (names[lastVisible] || '');
+      }
+
+      // Hide hint once the roster appears.
       if(hintEl){
-        hintEl.classList.toggle('done', progress >= 0.85);
+        hintEl.classList.toggle('done', progress >= rosterAt);
       }
     }
 
     window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
     // Trigger once on load for in-view case
     update();
   })();
