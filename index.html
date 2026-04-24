@@ -4,6 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Madami Consulting — Global Education</title>
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+<link rel="shortcut icon" href="assets/logo.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -26,6 +28,7 @@
     --dark-border: rgba(255,255,255,0.07);
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
   html,body{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-family:"Geist","Helvetica Neue",Helvetica,Arial,sans-serif;font-feature-settings:"ss01","ss02","cv11";}
   img{max-width:100%;display:block}
   a{color:inherit;text-decoration:none}
@@ -43,7 +46,7 @@
   .nav{position:fixed;top:18px;left:0;right:0;z-index:60;display:flex;justify-content:center;pointer-events:none}
   .nav-inner{pointer-events:auto;display:flex;align-items:center;gap:10px;padding:10px 10px 10px 20px;background:#ffffffd9;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;box-shadow:0 1px 0 #ffffff80 inset,0 10px 30px #0000000f}
   .nav .logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em}
-  .nav .logo .mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center;color:#fff;font-family:"Instrument Serif",serif;font-size:18px;line-height:1}
+  .nav .logo .mark{width:32px;height:32px;border-radius:9px;display:block;object-fit:contain;flex-shrink:0}
   .nav ul{display:flex;align-items:center;gap:4px;list-style:none;margin-left:18px}
   .nav ul a{padding:8px 14px;border-radius:999px;font-size:13.5px;color:#2a2a2a;transition:background .25s,color .25s}
   .nav ul a:hover{background:#0000000a}
@@ -178,6 +181,14 @@
   /* Pricing */
   .pricing{position:relative}
   .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  /* Bento pricing grid */
+  .tiers-bento{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:start}
+  .tier.t-uk{grid-column:1/-1}
+  /* UK banner horizontal layout */
+  .uk-banner-inner{display:grid;grid-template-columns:auto 1fr auto;gap:48px;align-items:center}
+  .uk-banner-inner .uk-b-left{}
+  .uk-banner-inner .uk-b-mid{border-left:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1);padding:0 48px}
+  .uk-banner-inner .uk-b-right{text-align:right}
   .tier{position:relative;border:1px solid var(--line);background:#fff;border-radius:28px;padding:32px 28px 28px;display:flex;flex-direction:column;gap:20px;transition:transform .4s, box-shadow .4s;overflow:hidden}
   .tier:hover{transform:translateY(-6px);box-shadow:0 20px 50px #00000014}
   .tier.featured{background:linear-gradient(135deg,#f0fdf7 0%,#e8f9f2 100%);color:var(--ink);border:2px solid var(--green);transform:translateY(-14px)}
@@ -569,6 +580,95 @@
 
   @media(max-width:768px){ .dm-card{ flex:0 0 260px; } }
 
+  /* ── Testimonial Carousel ── */
+  .rc-wrap{ position:relative; padding-bottom:56px; }
+  .rc-overflow{ overflow:hidden; }
+  .rc-track{ display:flex; transition:transform .6s cubic-bezier(.4,0,.2,1); will-change:transform; }
+  .rc-slide{ min-width:100%; padding:0 2px; box-sizing:border-box; }
+  .rc-card{
+    background:var(--dark-card);
+    border:1px solid var(--dark-border);
+    border-radius:28px;
+    padding:52px 56px;
+    max-width:820px;
+    margin:0 auto;
+    position:relative;
+    overflow:hidden;
+    transition:border-color .3s;
+  }
+  .rc-card:hover{ border-color:rgba(31,157,107,.3); }
+  .rc-card::before{
+    content:"\201C";
+    font-family:"Instrument Serif",serif;
+    font-size:200px;
+    line-height:1;
+    color:var(--green);
+    opacity:.07;
+    position:absolute;
+    top:-20px;left:28px;
+    pointer-events:none;
+    user-select:none;
+  }
+  .rc-card .rc-chip{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(31,157,107,.1);
+    border:1px solid rgba(31,157,107,.22);
+    padding:5px 12px;border-radius:999px;
+    font-family:"Geist Mono",monospace;font-size:10px;
+    letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green-2);width:fit-content;margin-bottom:6px;
+  }
+  .rc-card .rc-stars{ color:var(--yellow);font-size:15px;letter-spacing:3px;margin-bottom:10px;display:block; }
+  .rc-card .rc-quote{
+    font-family:"Instrument Serif",serif;
+    font-size:clamp(22px,2.6vw,34px);
+    line-height:1.28;
+    letter-spacing:-.01em;
+    color:#fff;
+    position:relative;z-index:1;
+    margin:0 0 32px;
+  }
+  .rc-card .rc-quote em{ font-style:italic;color:var(--green-2); }
+  .rc-card .rc-person{
+    display:flex;align-items:center;gap:14px;
+    padding-top:24px;
+    border-top:1px solid rgba(255,255,255,.07);
+  }
+  .rc-card .rc-av{
+    width:52px;height:52px;border-radius:50%;flex:0 0 auto;
+    overflow:hidden;
+    border:2px solid rgba(255,255,255,.12);
+  }
+  .rc-card .rc-av img{ width:100%;height:100%;object-fit:cover;display:block; }
+  /* Controls row */
+  .rc-controls{
+    display:flex;align-items:center;justify-content:center;
+    gap:20px;
+    position:absolute;bottom:0;left:0;right:0;
+  }
+  .rc-btn{
+    width:44px;height:44px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,.06);
+    color:#fff;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s,border-color .2s,transform .2s;
+    flex-shrink:0;
+  }
+  .rc-btn:hover{ background:var(--green);border-color:var(--green);transform:scale(1.08); }
+  .rc-dots{ display:flex;align-items:center;gap:7px; }
+  .rc-dot{
+    width:7px;height:7px;border-radius:50%;
+    background:rgba(255,255,255,.22);
+    border:none;cursor:pointer;padding:0;
+    transition:background .25s,transform .25s,width .25s;
+  }
+  .rc-dot.active{ background:var(--green-2);transform:scale(1.3);width:20px;border-radius:4px; }
+  @media(max-width:640px){
+    .rc-card{ padding:32px 24px; }
+    .rc-card .rc-quote{ font-size:20px; }
+  }
+
   /* Results — minimal row */
   .results-mini{position:relative;padding:40px 0}
   .results-mini .rm-head{max-width:780px;margin:0 auto 56px;text-align:center}
@@ -600,6 +700,9 @@
   .form-right h4{font-family:"Instrument Serif",serif;font-size:36px;line-height:1;font-weight:400;letter-spacing:-.01em;margin-bottom:28px}
   .field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;position:relative}
   .field label{font-size:12px;color:var(--muted);font-family:"Geist Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+  .field label .req-star{color:var(--green);margin-left:2px}
+  .edu-wrap{display:none}
+  .edu-wrap.visible{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
   .field input, .field select, .field textarea{font:inherit;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg);transition:border-color .2s, background .2s}
   .field input:focus, .field select:focus, .field textarea:focus{outline:none;border-color:var(--green);background:#fff}
   .field textarea{min-height:110px;resize:vertical}
@@ -768,10 +871,35 @@
   }
 
   /* ── Pricing tiers ── */
+
+  /* UK coming-soon card */
+  .tier.t-uk{background:linear-gradient(135deg,#0b1a2e 0%,#0d2340 100%);color:#fff;border-color:#1a3a5c;position:relative;overflow:hidden}
+  .tier.t-uk::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(99,179,255,.15) 0%,transparent 60%);pointer-events:none}
+  .tier.t-uk .tag{color:rgba(255,255,255,.45)}
+  .tier.t-uk h4{color:#fff;font-size:26px}
+  .tier.t-uk .uk-flag-bg{position:absolute;right:-20px;bottom:-20px;font-size:180px;opacity:.05;pointer-events:none;line-height:1;user-select:none}
+  .tier.t-uk .soon-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:#7dd3fc;font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:7px 14px;border-radius:999px;margin:12px 0 20px}
+  .tier.t-uk .dot-pulse{width:6px;height:6px;border-radius:50%;background:#7dd3fc;animation:pulse2 1.8s ease-in-out infinite;flex-shrink:0}
+  .tier.t-uk ul li{color:rgba(255,255,255,.65);border-bottom-color:rgba(255,255,255,.07)}
+  .tier.t-uk .cta-soon{margin-top:24px;display:inline-flex;align-items:center;gap:10px;padding:14px 20px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.45);font-size:14px;cursor:default;font-style:italic;width:fit-content}
+  .tier.t-uk .uk-desc{color:rgba(255,255,255,.45);font-size:15px;line-height:1.65;margin-top:8px;max-width:420px}
+  .tier.t-uk ul{margin-top:0}
+  .tier.t-uk ul li{font-size:14px}
+
+  @media(max-width:900px){
+    .tiers-bento{grid-template-columns:1fr 1fr}
+    .uk-banner-inner{grid-template-columns:1fr 1fr;gap:24px}
+    .uk-banner-inner .uk-b-right{display:none}
+    .uk-banner-inner .uk-b-mid{border-right:none;padding-right:0}
+  }
   @media(max-width:640px){
     .tier{padding:24px 20px 20px}
     .tier .price .num{font-size:64px}
     .tier.featured{transform:none}
+    .tiers-bento{grid-template-columns:1fr}
+    .tier.t-uk{grid-column:1}
+    .uk-banner-inner{grid-template-columns:1fr}
+    .uk-banner-inner .uk-b-mid{border:none;padding:0}
   }
 
   /* ── Staff scroll section ── */
@@ -816,7 +944,7 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="logo"><span class="mark">M</span><span>Madami</span></a>
+    <a href="#" class="logo"><img src="assets/logo.svg" class="mark" alt="Madami logo" /><span>Madami</span></a>
     <ul>
       <li><a href="#home" class="active">Bosh sahifa</a></li>
       <li><a href="#services">Xizmatlar</a></li>
@@ -869,11 +997,6 @@
           <span class="play"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M3 1.5v11l9-5.5-9-5.5Z"/></svg></span>
           <span class="t"><small>Watch</small><b>Our story · 2:14</b></span>
         </button>
-      </div>
-      <div class="hero-meta" data-reveal>
-        <div class="m"><b>60+</b><span>Students placed</span></div>
-        <div class="m"><b>12</b><span>Countries</span></div>
-        <div class="m"><b>93%</b><span>Visa success</span></div>
       </div>
     </div>
 
@@ -970,34 +1093,20 @@
       <div class="right">Yashirin to'lov yo'q. Sizga mos paketni tanlang, bir marta to'lang — biz birinchi kundan tamom bo'lgunga qadar yoningizda bo'lamiz.</div>
     </div>
 
-    <div class="tiers" data-reveal>
-      <!-- Tier 1 -->
-      <div class="tier">
-        <span class="tag">● Intervyuga tayyorgarlik</span>
-        <h4>Interview Ready</h4>
-        <div class="price"><span class="num">$200</span><span class="per">bir martalik</span></div>
-        <ul>
-          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 1:1 mutaxassis konsultatsiyasi</li>
-          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Ehtiyojlar va tayyorgarlik baholash</li>
-          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 24-soatlik WhatsApp qo'llab-quvvatlash</li>
-          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Mock intervyu va tayyor skriptlar</li>
-        </ul>
-        <a href="#contact" class="cta">Tanlash
-          <svg width="14" height="14" viewBox="0 0 10 10"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </a>
-      </div>
+    <!-- Bento pricing grid -->
+    <div class="tiers-bento" data-reveal>
 
-      <!-- Tier 2 FEATURED -->
-      <div class="tier featured">
-        <span class="ribbon">Ko'p tanlanadi</span>
-        <span class="tag">● To'liq universitet qabul</span>
-        <h4>University Admission</h4>
+      <!-- USA Full — featured -->
+      <div class="tier featured t-usa-full">
+        <div class="ribbon">Eng mashhur</div>
+        <span class="tag">● To'liq paket · 🇺🇸 USA</span>
+        <h4>University<br/>Admission</h4>
         <div class="price"><span class="num"><em>$3300</em></span><span class="per">bir martalik</span></div>
         <ul>
           <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Intervyu va ariza tayyorlash to'liq</li>
           <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Aeroportdan kutib olish va joylashtirish</li>
           <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Bank Statement / Duolingo / IELTS yordam</li>
-          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Stipendiya va uy-joy</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Stipendiya va uy-joy qidiruvi</li>
           <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> O'qishgacha shaxsiy menejer</li>
         </ul>
         <a href="#contact" class="cta">Boshlash
@@ -1005,21 +1114,74 @@
         </a>
       </div>
 
-      <!-- Tier 3 -->
-      <div class="tier">
-        <span class="tag">● AQSh vizasi uchun yordam</span>
-        <h4>USA Visa Support</h4>
-        <div class="price"><span class="num">$700</span><span class="per">bir martalik</span></div>
+      <!-- Canada -->
+      <div class="tier t-canada">
+        <span class="tag">● Kanada · Turizm vizasi</span>
+        <h4>🇨🇦 Canada<br/>Tourist Visa</h4>
+        <div class="price"><span class="num">$400</span><span class="per">bir martalik</span></div>
         <ul>
-          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> DS-160 arizasini to'liq tayyorlash</li>
-          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Hujjatlarni tekshirish va elchixona yozilish</li>
-          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Mock intervyu mashqlari</li>
-          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Javob kelgunga qadar 24-soatlik yordam</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> To'liq hujjatlar tayyorlash</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Shaxsiy keis tahlili</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Bosqichma-bosqich qo'llanma</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Cover letter va moliya yordam</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 24/7 qo'llab-quvvatlash</li>
         </ul>
         <a href="#contact" class="cta">Tanlash
           <svg width="14" height="14" viewBox="0 0 10 10"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </a>
       </div>
+
+      <!-- USA Visa Interview -->
+      <div class="tier t-visa">
+        <span class="tag">● AQSh · Viza intervyu</span>
+        <h4>🇺🇸 USA Visa<br/>Interview Prep</h4>
+        <div class="price"><span class="num">$700</span><span class="per">bir martalik</span></div>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> DS-160 to'liq tayyorlash</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Hujjat tekshirish & elchixona yozilish</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Mock intervyu mashqlari</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Javob kelgunga qadar 24/7 yordam</li>
+        </ul>
+        <a href="#contact" class="cta">Tanlash
+          <svg width="14" height="14" viewBox="0 0 10 10"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+
+      <!-- UK Coming Soon — full-width horizontal banner -->
+      <div class="tier t-uk">
+        <span class="uk-flag-bg">🇬🇧</span>
+        <div class="uk-banner-inner">
+          <!-- Left: identity -->
+          <div class="uk-b-left">
+            <span class="tag" style="margin-bottom:14px;display:block">● Yaqinda — United Kingdom</span>
+            <h4 style="font-size:32px;line-height:1.1">🇬🇧 United Kingdom<br/>Visa Package</h4>
+            <div class="soon-badge" style="margin-top:18px">
+              <span class="dot-pulse"></span>
+              Tez kunda
+            </div>
+          </div>
+          <!-- Mid: description + features -->
+          <div class="uk-b-mid">
+            <p class="uk-desc" style="margin-bottom:20px">Buyuk Britaniya Standard Visitor Visa uchun to'liq paket ishlab chiqilmoqda. Hujjatlardan biometricsgacha — barchasi bir joyda.</p>
+            <ul style="margin:0">
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="rgba(99,179,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Standard Visitor Visa hujjatlari</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="rgba(99,179,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> UK Visas & Immigration portali orqali ariza</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="rgba(99,179,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Shaxsiy keis & refusal xatarini tahlil</li>
+              <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 4" stroke="rgba(99,179,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Biometrics va VFS Global yordami</li>
+            </ul>
+          </div>
+          <!-- Right: CTA teaser -->
+          <div class="uk-b-right">
+            <p style="color:rgba(255,255,255,.35);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-family:'Geist Mono',monospace;margin-bottom:16px">Narx</p>
+            <div style="font-size:52px;font-family:'Instrument Serif',serif;color:rgba(255,255,255,.15);line-height:1;margin-bottom:20px">TBA</div>
+            <div class="cta-soon">
+              E'lonni kuting
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l2 2m6-2a8 8 0 11-16 0 8 8 0 0116 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1100,155 +1262,39 @@
       <div class="right">93% mamnuniyat — bu shior emas. Bu o'qishni boshlagandan bir yil keyin bizdan so'ralgan anonim so'rov natijasi.</div>
     </div>
 
-    <!-- Featured grid: 1 big + 2 side -->
-    <div class="t-feat-grid" data-reveal>
-
-      <!-- Big featured quote -->
-      <article class="t-main-card">
-        <div class="t-stars">★★★★★</div>
-        <span class="t-chip">F-1 · $48K Scholarship</span>
-        <p class="t-quote">
-          "Ivy League'ga kirdim, stipendiya bilan — <em>men ishongan narsadan ko'proq</em>. Asad essays'imni o'qib, qaysi so'zni ishlatish kerakligini bilar ekan. Katta farq qildi."
-        </p>
-        <div class="t-person">
-          <div class="t-avatar" style="width:52px;height:52px">
-            <img src="uploads/pasted-1776895182685-0.png" alt="Muhammadaziz" onerror="this.style.display='none'" />
-          </div>
-          <div>
-            <b class="t-name">Muhammadaziz Tursunbaev</b>
-            <span class="t-school">Western New England University</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- 2 side cards -->
-      <div class="t-side-stack">
-
-        <article class="t-side-card">
-          <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"Aeroport kutib olishdan kvartira tanlashgacha — <em>yonimda edilar</em>. Haqiqiy professionallar."</p>
-          <div class="t-person">
-            <div class="t-avatar" style="width:38px;height:38px;background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)">
-              <img src="uploads/pasted-1776895193367-0.png" alt="Durbek" onerror="this.style.display='none'" />
-            </div>
-            <div>
-              <b class="t-name">Durbek Yorqinov</b>
-              <span class="t-school">NYU · Computer Science</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="t-side-card green-card">
-          <div class="t-stars">★★★★★</div>
-          <p class="t-quote">"Arizadan viza shtempeligacha — <em>besh oy</em>. Oilamiz qilgan eng yaxshi sarmoya."</p>
-          <div class="t-person">
-            <div class="t-avatar" style="width:38px;height:38px;background:radial-gradient(ellipse at 50% 35%,#d2a383,#8a5a3d 60%)">
-              <img src="uploads/pasted-1776895896821-0.png" alt="Javokhir" onerror="this.style.display='none'" />
-            </div>
-            <div>
-              <b class="t-name">Javokhir Rahimov</b>
-              <span class="t-school">Purdue University</span>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div><!-- /t-feat-grid -->
-
-    <!-- Scrolling marquee row -->
+    <!-- Auto-scrolling marquee -->
     <div class="dark-marquee-wrap" data-reveal>
       <div class="dark-marquee-track">
-
-        <!-- Set 1 -->
         <article class="dm-card">
-          <div class="dm-head">
-            <span class="dm-stars">★★★★★</span>
-            <span class="dm-chip"><span class="dg"></span> Tourist Visa</span>
-          </div>
-          <p class="dm-q">"Mock intervyular <em>har qanday savolga</em> tayyorlagan. Zero nerves at embassy."</p>
-          <div class="dm-who">
-            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#c9a788,#8e6246 60%)">
-              <img src="uploads/pasted-1776897964922-0.png" alt="" onerror="this.style.display='none'" />
-            </div>
-            <div><b>Madina Abdullaeva</b><span>University of Toronto</span></div>
-          </div>
-        </article>
-
-        <article class="dm-card dm-green">
-          <div class="dm-head">
-            <span class="dm-stars">★★★★★</span>
-            <span class="dm-chip"><span class="dg"></span> F-1 · $48K Grant</span>
-          </div>
-          <p class="dm-q">"Essay'im uchun qaysi so'zni ishlatish kerakligini <em>bilar ekan</em>. Katta farq qildi."</p>
-          <div class="dm-who">
-            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)"></div>
-            <div><b>Laylo Karimova</b><span>Boston University</span></div>
-          </div>
-        </article>
-
-        <article class="dm-card">
-          <div class="dm-head">
-            <span class="dm-stars">★★★★★</span>
-            <span class="dm-chip"><span class="dg"></span> UK Tourist</span>
-          </div>
-          <p class="dm-q">"Va'da qilingan sanada <em>London'da edim</em>. Oila uchun ishonchli."</p>
-          <div class="dm-who">
-            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#d9b89a,#a57a56 60%)"></div>
-            <div><b>Nilufar Karimova</b><span>2 haftada rasmiylashgan</span></div>
-          </div>
-        </article>
-
-        <article class="dm-card dm-yellow">
-          <div class="dm-head">
-            <span class="dm-stars">★★★★★</span>
-            <span class="dm-chip"><span class="dg"></span> F-1 Visa</span>
-          </div>
-          <p class="dm-q">"Birinchi arizamdan qabul oldim — <em>Asad bilan ishlash</em> butunlay boshqacha tajriba."</p>
-          <div class="dm-who">
-            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#c0917a,#8a5a40 60%)"></div>
-            <div><b>Bobur Xasanov</b><span>University of Illinois</span></div>
-          </div>
-        </article>
-
-        <article class="dm-card dm-green">
-          <div class="dm-head">
-            <span class="dm-stars">★★★★★</span>
-            <span class="dm-chip"><span class="dg"></span> Canada TRV</span>
-          </div>
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> Canada TRV</span></div>
           <p class="dm-q">"10-yillik Canada vizasini <em>3 haftada</em> oldim. Hujjatlar hammasi tayyor edi."</p>
-          <div class="dm-who">
-            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#d4c4a8,#9a8060 60%)"></div>
-            <div><b>Sardor Toshmatov</b><span>Toronto · 2024</span></div>
-          </div>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#d4c4a8,#9a8060 60%)"></div><div><b>Sardor Toshmatov</b><span>Toronto · 2024</span></div></div>
         </article>
-
-        <article class="dm-card">
-          <div class="dm-head">
-            <span class="dm-stars">★★★★★</span>
-            <span class="dm-chip"><span class="dg"></span> F-1</span>
-          </div>
-          <p class="dm-q">"Asad o'zi tushuntirdi — hech narsa <em>yashirin emas</em>. Ishonchli odam."</p>
-          <div class="dm-who">
-            <div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)"></div>
-            <div><b>Zulfiya Normatova</b><span>NYU · Nursing</span></div>
-          </div>
+        <article class="dm-card dm-yellow">
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> F-1 Visa</span></div>
+          <p class="dm-q">"Birinchi arizamdan qabul oldim — <em>Asad bilan ishlash</em> butunlay boshqacha tajriba."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#c0917a,#8a5a40 60%)"></div><div><b>Bobur Xasanov</b><span>University of Illinois</span></div></div>
         </article>
-
-        <!-- Set 2 (duplicate for seamless loop) -->
-        <article class="dm-card" aria-hidden="true">
-          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> Tourist Visa</span></div>
-          <p class="dm-q">"Mock intervyular <em>har qanday savolga</em> tayyorlagan. Zero nerves at embassy."</p>
-          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#c9a788,#8e6246 60%)"></div><div><b>Madina Abdullaeva</b><span>University of Toronto</span></div></div>
-        </article>
-        <article class="dm-card dm-green" aria-hidden="true">
+        <article class="dm-card dm-green">
           <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> F-1 · $48K Grant</span></div>
           <p class="dm-q">"Essay'im uchun qaysi so'zni ishlatish kerakligini <em>bilar ekan</em>. Katta farq qildi."</p>
           <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)"></div><div><b>Laylo Karimova</b><span>Boston University</span></div></div>
         </article>
+        <article class="dm-card">
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> F-1</span></div>
+          <p class="dm-q">"Asad o'zi tushuntirdi — hech narsa <em>yashirin emas</em>. Ishonchli odam."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)"></div><div><b>Zulfiya Normatova</b><span>NYU · Nursing</span></div></div>
+        </article>
+        <article class="dm-card dm-green">
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> F-1 · $48K Scholarship</span></div>
+          <p class="dm-q">"Stipendiya bilan Ivy League — <em>haqiqatan mumkin ekan</em>. Madami bilan ishlash qaror qildim, to'g'ri chiqqan."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#c9b090,#8a6a45 60%)"></div><div><b>Sherzod Yusupov</b><span>Columbia University</span></div></div>
+        </article>
+        <!-- Duplicate set for seamless loop -->
         <article class="dm-card" aria-hidden="true">
-          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> UK Tourist</span></div>
-          <p class="dm-q">"Va'da qilingan sanada <em>London'da edim</em>. Oila uchun ishonchli."</p>
-          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#d9b89a,#a57a56 60%)"></div><div><b>Nilufar Karimova</b><span>2 haftada rasmiylashgan</span></div></div>
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> Canada TRV</span></div>
+          <p class="dm-q">"10-yillik Canada vizasini <em>3 haftada</em> oldim. Hujjatlar hammasi tayyor edi."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#d4c4a8,#9a8060 60%)"></div><div><b>Sardor Toshmatov</b><span>Toronto · 2024</span></div></div>
         </article>
         <article class="dm-card dm-yellow" aria-hidden="true">
           <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> F-1 Visa</span></div>
@@ -1256,18 +1302,22 @@
           <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#c0917a,#8a5a40 60%)"></div><div><b>Bobur Xasanov</b><span>University of Illinois</span></div></div>
         </article>
         <article class="dm-card dm-green" aria-hidden="true">
-          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> Canada TRV</span></div>
-          <p class="dm-q">"10-yillik Canada vizasini <em>3 haftada</em> oldim. Hujjatlar hammasi tayyor edi."</p>
-          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#d4c4a8,#9a8060 60%)"></div><div><b>Sardor Toshmatov</b><span>Toronto · 2024</span></div></div>
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> F-1 · $48K Grant</span></div>
+          <p class="dm-q">"Essay'im uchun qaysi so'zni ishlatish kerakligini <em>bilar ekan</em>. Katta farq qildi."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)"></div><div><b>Laylo Karimova</b><span>Boston University</span></div></div>
         </article>
         <article class="dm-card" aria-hidden="true">
           <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> F-1</span></div>
           <p class="dm-q">"Asad o'zi tushuntirdi — hech narsa <em>yashirin emas</em>. Ishonchli odam."</p>
           <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#e6b898,#a26c47 60%)"></div><div><b>Zulfiya Normatova</b><span>NYU · Nursing</span></div></div>
         </article>
-
+        <article class="dm-card dm-green" aria-hidden="true">
+          <div class="dm-head"><span class="dm-stars">★★★★★</span><span class="dm-chip"><span class="dg"></span> F-1 · $48K Scholarship</span></div>
+          <p class="dm-q">"Stipendiya bilan Ivy League — <em>haqiqatan mumkin ekan</em>. Madami bilan ishlash qaror qildim, to'g'ri chiqqan."</p>
+          <div class="dm-who"><div class="dm-av" style="background:radial-gradient(ellipse at 50% 35%,#c9b090,#8a6a45 60%)"></div><div><b>Sherzod Yusupov</b><span>Columbia University</span></div></div>
+        </article>
       </div>
-    </div><!-- /dark-marquee-wrap -->
+    </div>
 
   </div>
 </section>
@@ -1308,35 +1358,52 @@
     </div>
 
     <div class="form-block" data-reveal>
-      <form class="form-right" onsubmit="event.preventDefault();this.querySelector('button.submit').innerHTML='<span>Yuborildi — tez orada javob beramiz ✓</span>'">
+      <form class="form-right" onsubmit="sendToTelegram(event, this)">
         <span class="eyebrow">Yangi ariza</span>
         <h4>Birinchi qadamni tashlang.</h4>
 
         <div class="row2">
           <div class="field">
-            <label>Ism familiya</label>
-            <input type="text" placeholder="Asad Madaminov" required />
+            <label>Ism familiya <span class="req-star">*</span></label>
+            <input id="f-name" type="text" placeholder="Asad Madaminov" required />
           </div>
           <div class="field">
-            <label>Telefon</label>
-            <input type="tel" placeholder="+998 ..." required />
+            <label>Yosh <span class="req-star">*</span></label>
+            <input id="f-age" type="number" placeholder="17" min="14" max="60" required />
           </div>
         </div>
         <div class="field">
-          <label>Telegram username</label>
-          <input type="text" placeholder="@username" required />
+          <label>Telefon <span class="req-star">*</span></label>
+          <input id="f-phone" type="tel" placeholder="+998 ..." required />
         </div>
         <div class="field">
-          <label>Yo'nalish</label>
+          <label>Telegram username <span class="req-star">*</span></label>
+          <input id="f-tg" type="text" placeholder="@username" required />
+        </div>
+        <div class="field">
+          <label>Yo'nalish <span class="req-star">*</span></label>
           <div class="chips">
-            <label><input type="radio" name="dest" checked> 🇺🇸 USA</label>
-            <label><input type="radio" name="dest"> 🇬🇧 UK</label>
-            <label><input type="radio" name="dest"> 🇨🇦 Canada</label>
+            <label><input type="radio" name="dest" value="🇺🇸 USA" onchange="handleDestChange(this)"> 🇺🇸 USA</label>
+            <label><input type="radio" name="dest" value="🇬🇧 UK" onchange="handleDestChange(this)"> 🇬🇧 UK</label>
+            <label><input type="radio" name="dest" value="🇨🇦 Canada" onchange="handleDestChange(this)"> 🇨🇦 Canada</label>
+          </div>
+        </div>
+        <div class="edu-wrap" id="f-usa-extra">
+          <div class="field">
+            <label>IELTS ball <span class="req-star">*</span></label>
+            <input id="f-ielts" type="text" placeholder="6.5" />
+          </div>
+          <div class="field" style="margin-top:4px">
+            <label>Talim turi <span class="req-star">*</span></label>
+            <div class="chips">
+              <label><input type="radio" name="edu" value="Bakalavr"> 🎓 Bakalavr</label>
+              <label><input type="radio" name="edu" value="Magistr"> 🎓 Magistr</label>
+            </div>
           </div>
         </div>
         <div class="field">
-          <label>Qanday yordam kerak?</label>
-          <textarea placeholder="Masalan: F-1 vizaga tayyorgarlik, universitetga qabul, stipendiya..."></textarea>
+          <label>Qo'shimcha izoh</label>
+          <textarea id="f-comment" placeholder="Masalan: F-1 vizaga tayyorgarlik, universitetga qabul, stipendiya..."></textarea>
         </div>
         <button type="submit" class="submit">
           Arizani yuborish
@@ -1348,24 +1415,24 @@
         <h3>Savolingiz<br/>bormi? <em>Yozing.</em></h3>
         <p>Javobni 24 soat ichida olasiz. Biz har bir ariza bilan shaxsan ishlaymiz — chatbot yo'q, avtomatik xat yo'q.</p>
         <div class="contact-list">
-          <div class="row">
+          <a class="row" href="https://t.me/madami_admin" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
             <div class="ic">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 7l9 6 9-6M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7a2 2 0 012-2h14a2 2 0 012 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.88 13.67l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.268.89z"/></svg>
             </div>
-            <div><b>@madami_consulting</b><span>Telegram</span></div>
-          </div>
+            <div><b>@madami_admin</b><span>Telegram</span></div>
+          </a>
           <div class="row">
             <div class="ic">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.8.6 2.7a2 2 0 01-.5 2.1L8 9.7a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.5c.9.3 1.8.5 2.7.6a2 2 0 011.7 2.1z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div><b>+1 608 421 9199</b><span>WhatsApp / Telegram</span></div>
+            <div><b>+998 88 1355588</b><span>WhatsApp / Telegram</span></div>
           </div>
-          <div class="row">
+          <a class="row" href="https://yandex.uz/maps/-/CPGNb0~b" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
             <div class="ic">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-7-7-12a7 7 0 0114 0c0 5-7 12-7 12z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
             </div>
             <div><b>New York · Toshkent</b><span>Ikki ofis, bir jamoa</span></div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -1393,24 +1460,24 @@
       <div>
         <h5>Destinations</h5>
         <ul>
-          <li><a href="#">United States</a></li>
-          <li><a href="#">United Kingdom</a></li>
-          <li><a href="#">Canada</a></li>
-          <li><a href="#">Language schools</a></li>
+          <li><a href="#services">United States</a></li>
+          <li><a href="#services">United Kingdom</a></li>
+          <li><a href="#services">Canada</a></li>
         </ul>
       </div>
       <div>
         <h5>Contact</h5>
         <ul>
-          <li><a href="#">madaminovasadulloh2002@gmail.com</a></li>
-          <li><a href="#">+1 608 421 9199</a></li>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Telegram</a></li>
+          <li><a href="https://t.me/madamiuzz">Telegram</a></li>
+          <li><a href="https://www.instagram.com/madami.uz/">Instagram</a></li>
+          <li><a href="tel:+998881355588">+998881355588</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Madami Consulting. All rights reserved.</span>
+     <span>
+        © <span id="year"></span> Madami Consulting. All rights reserved.
+      </span>
       <span>Made with intent — New York × Tashkent</span>
     </div>
   </div>
@@ -1528,6 +1595,139 @@
       if(e.key === 'Escape') closeMenu();
     });
   })();
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // ── Testimonials Carousel (manual, no autoplay) ──────────────────────────
+  (function() {
+    const track  = document.getElementById('rcTrack');
+    const dotsEl = document.getElementById('rcDots');
+    if (!track) return;
+    const slides = track.querySelectorAll('.rc-slide');
+    const total  = slides.length;
+    let current  = 0;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'rc-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', `Slide ${i + 1}`);
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    });
+
+    function goTo(idx) {
+      current = (idx + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dotsEl.querySelectorAll('.rc-dot').forEach((d, i) =>
+        d.classList.toggle('active', i === current)
+      );
+    }
+
+    document.getElementById('rcPrev').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('rcNext').addEventListener('click', () => goTo(current + 1));
+
+    // Swipe support
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+    });
+  })();
+
+  // ── Country selector: show/hide USA-only fields ───────────────────────────
+  function handleDestChange(radio) {
+    const wrap      = document.getElementById('f-usa-extra');
+    const ieltsEl   = document.getElementById('f-ielts');
+    const eduInputs = wrap.querySelectorAll('input[name="edu"]');
+    if (radio.value === '🇺🇸 USA') {
+      wrap.classList.add('visible');
+      ieltsEl.required = true;
+      eduInputs.forEach(i => i.required = true);
+    } else {
+      wrap.classList.remove('visible');
+      ieltsEl.required = false;
+      ieltsEl.value    = '';
+      eduInputs.forEach(i => { i.required = false; i.checked = false; });
+    }
+  }
+
+  // ── Telegram form submission ──────────────────────────────────────────────
+  async function sendToTelegram(event, form) {
+    event.preventDefault();
+
+    const btn     = form.querySelector('button.submit');
+    const name    = document.getElementById('f-name').value.trim();
+    const age     = document.getElementById('f-age').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const ielts   = document.getElementById('f-ielts').value.trim();
+    const tg      = document.getElementById('f-tg').value.trim();
+    const comment = document.getElementById('f-comment').value.trim();
+
+    const countryInput = form.querySelector('input[name="dest"]:checked');
+    if (!countryInput) {
+      alert("Iltimos, yo'nalishni tanlang.");
+      return;
+    }
+    const country = countryInput.value;
+
+    let edu = '';
+    if (country === '🇺🇸 USA') {
+      const eduInput = form.querySelector('input[name="edu"]:checked');
+      if (!eduInput) {
+        alert("Iltimos, talim turini tanlang (Bakalavr yoki Magistr).");
+        return;
+      }
+      edu = eduInput.value;
+    }
+
+    const num = Math.floor(1000 + Math.random() * 9000);
+
+    const lines = [
+      `🏢 <b>№ ${num}</b>`,
+      `👤 User: ${name}`,
+      `🕐 Yoshi: ${age}`,
+      `💻 Ielts: ${ielts}`,
+      `📞 Aloqa: ${phone}`,
+      `✈️ Telegram username: ${tg}`,
+      `🌍 Yo'nalish: ${country}`,
+    ];
+    if (edu)     lines.push(`🏛 Talim turi: ${edu}`);
+    if (comment) lines.push(`📱 Qo'shimcha izoh: ${comment}`);
+
+    const text = lines.join('\n');
+
+    btn.disabled = true;
+    btn.innerHTML = '<span>Yuborilmoqda…</span>';
+
+    try {
+      const res = await fetch('https://api.telegram.org/bot6362480525:AAH5G1TAznHqWFiS0-PsBx7udXid6fzRB80/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: '-1003235651217',
+          text: text,
+          parse_mode: 'HTML'
+        })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        btn.innerHTML = '<span>Yuborildi — tez orada javob beramiz ✓</span>';
+        form.reset();
+        document.getElementById('f-usa-extra').classList.remove('visible');
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = 'Arizani yuborish <svg width="14" height="14" viewBox="0 0 10 10"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+        }, 10000);
+      } else {
+        throw new Error(data.description || 'Telegram error');
+      }
+    } catch (err) {
+      console.error('Telegram send error:', err);
+      btn.disabled = false;
+      btn.innerHTML = "Xatolik yuz berdi. Qayta urinib ko'ring.";
+    }
+  }
 </script>
 
 </body>
