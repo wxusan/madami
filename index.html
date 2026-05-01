@@ -65,7 +65,8 @@
   .hero .blob.b{width:380px;height:380px;background:#F3C340;bottom:-140px;left:-80px;opacity:.35;animation:float 18s ease-in-out -6s infinite}
   @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-20px)}}
 
-  .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:60px;align-items:center;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;grid-template-rows:auto auto;gap:30px 60px;align-items:center;position:relative}
+  .hero-copy{grid-column:1;grid-row:1}
   .hero h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(44px,7.2vw,104px);line-height:.98;letter-spacing:-.02em}
   .hero h1 .line{display:block;overflow:hidden}
   .hero h1 em{font-style:italic;color:var(--green)}
@@ -78,14 +79,55 @@
   .btn-primary:hover{background:var(--green);transform:translateY(-2px)}
   .btn-primary .arr{width:26px;height:26px;border-radius:50%;background:#ffffff1a;display:grid;place-items:center;transition:transform .3s}
   .btn-primary:hover .arr{transform:rotate(-45deg)}
-  .btn-video{display:inline-flex;align-items:center;gap:12px;padding:8px 20px 8px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;transition:background .2s}
-  .btn-video:hover{background:#fff}
-  .btn-video .play{width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;position:relative}
-  .btn-video .play::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--green);opacity:.4;animation:ring 2.2s linear infinite}
-  @keyframes ring{0%{transform:scale(.9);opacity:.6}100%{transform:scale(1.3);opacity:0}}
-  .btn-video .t{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1}
-  .btn-video .t small{font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
-  .btn-video .t b{font-size:14px;font-weight:600}
+  .hero-video-frame{
+    position:relative;
+    grid-column:1;
+    grid-row:2;
+    margin-top:0;
+    max-width:560px;
+    aspect-ratio:16 / 9;
+    padding:8px;
+    border:1px solid var(--line);
+    border-radius:26px;
+    background:linear-gradient(135deg,#ffffff,#edf8f3);
+    box-shadow:0 26px 70px #00000018,0 1px 0 #ffffffcc inset;
+    overflow:hidden;
+  }
+  .hero-video-frame iframe{
+    display:block;
+    width:100%;
+    height:100%;
+    border:0;
+    border-radius:19px;
+    background:#0c0c0c;
+    pointer-events:none;
+  }
+  .sound-toggle{
+    position:absolute;
+    right:18px;
+    bottom:18px;
+    z-index:2;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    min-height:38px;
+    padding:8px 12px;
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:999px;
+    background:rgba(12,12,12,.58);
+    color:#fff;
+    box-shadow:0 10px 28px #00000038;
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    font-size:12px;
+    font-weight:600;
+    transition:background .2s, transform .2s, border-color .2s;
+  }
+  .sound-toggle:hover{background:rgba(12,12,12,.74);border-color:rgba(255,255,255,.34);transform:translateY(-1px)}
+  .sound-toggle svg{width:16px;height:16px;display:block;flex:0 0 auto}
+  .sound-toggle .sound-on{display:none}
+  .sound-toggle[aria-pressed="true"] .sound-off{display:none}
+  .sound-toggle[aria-pressed="true"] .sound-on{display:block}
 
   .hero-meta{display:flex;gap:28px;margin-top:44px;flex-wrap:wrap}
   .hero-meta .m{display:flex;flex-direction:column;gap:2px}
@@ -93,11 +135,19 @@
   .hero-meta .m span{font-size:12px;color:var(--muted);letter-spacing:.02em}
 
   /* Hero visual */
-  .hero-visual{position:relative;height:620px}
+  .hero-visual{position:relative;height:620px;grid-column:2;grid-row:1 / span 2}
   .card-stack{position:relative;height:100%;}
   .big-card{position:absolute;inset:20px 40px 60px 40px;border-radius:28px;overflow:hidden;box-shadow:0 30px 80px #0000002e,0 2px 0 #ffffff40 inset;background:#222;transform:rotate(-2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
   .big-card:hover{transform:rotate(0) translateY(-4px)}
-  .big-card .ph{position:absolute;inset:0;background-image:url('assets/asad-nyc.png');background-size:cover;background-position:center}
+  .big-card .ph{
+    position:absolute;
+    inset:0;
+    background-image:url('assets/Asad.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:left top;
+    background-color:#171714;
+  }
   .big-card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 60%, #000000a0 100%)}
   .big-card .tag-city{position:absolute;right:18px;bottom:18px;color:#fff;font-family:"Instrument Serif",serif;font-size:22px;text-shadow:0 2px 18px #00000080}
   .big-card .tag-city small{display:block;font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#fffc;margin-top:2px}
@@ -399,6 +449,7 @@
       font-size:9px;
       line-height:1.15;
     }
+    .staff-counter{display:none}
   }
 
   /* Card internals */
@@ -409,6 +460,10 @@
     background-position: center top;
     background-color: #c9a788;
   }
+  .sf-photo.asad-owner{background-position:center bottom}
+  .sf-photo.abduqodir-cofounder{background-position:62% center}
+  .sf-photo.javohir-creative,
+  .sf-photo.xusan-coordinator{background-position:center center}
   .sf-photo::after{
     content: "";
     position: absolute;
@@ -836,8 +891,10 @@
   [data-reveal].in{opacity:1;transform:none}
 
   @media (max-width:1024px){
-    .hero-grid{grid-template-columns:1fr;gap:80px}
-    .hero-visual{height:540px}
+    .hero-grid{grid-template-columns:1fr;grid-template-rows:auto;gap:42px}
+    .hero-copy{grid-column:1;grid-row:1}
+    .hero-visual{grid-column:1;grid-row:2;height:540px}
+    .hero-video-frame{grid-column:1;grid-row:3;width:100%;max-width:720px;justify-self:center}
     .tiers{grid-template-columns:1fr}
     .tier.featured{transform:none}
     .stats{grid-template-columns:repeat(2,1fr)}
@@ -1091,7 +1148,7 @@
   <div class="blob b"></div>
   <div class="bg-grid"></div>
   <div class="wrap hero-grid">
-    <div>
+    <div class="hero-copy">
       <span class="pill" data-reveal><span class="dot"></span> <span class="mono">EST. 2021 · 🇺🇸 American Education Experts</span></span>
       <h1 style="margin-top:24px" data-reveal>
         <span class="line">Your <em>American</em></span>
@@ -1105,11 +1162,28 @@
             <svg width="12" height="12" viewBox="0 0 10 10"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </span>
         </a>
-        <button class="btn-video" onclick="document.getElementById('video-modal').showModal()">
-          <span class="play"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M3 1.5v11l9-5.5-9-5.5Z"/></svg></span>
-          <span class="t"><small>Watch</small><b>Our story · 2:14</b></span>
-        </button>
       </div>
+    </div>
+
+    <div class="hero-video-frame" data-reveal>
+      <iframe
+        id="heroVideoPlayer"
+        src="https://www.youtube.com/embed/Itk14aAZKVo?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=Itk14aAZKVo&enablejsapi=1"
+        title="MADAMI.UZ bilan Amerikaga"
+        allow="autoplay; encrypted-media; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+      <button class="sound-toggle" id="heroSoundToggle" type="button" aria-pressed="false" aria-label="Unmute hero video">
+        <svg class="sound-off" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 9v6h4l5 4V5L8 9H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M18 9l3 3m0-3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <svg class="sound-on" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 9v6h4l5 4V5L8 9H4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M17 9.5a4 4 0 0 1 0 5M19.5 7a7.5 7.5 0 0 1 0 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span>Muted</span>
+      </button>
     </div>
 
     <div class="hero-visual" data-reveal>
@@ -1326,31 +1400,31 @@
 
         <!-- Card 0 — Center (appears first) -->
         <article class="sf-card" data-order="0">
-          <div class="sf-photo" style="background-image:url('uploads/pasted-1776895149186-0.png');background-color:#a07050"></div>
-          <span class="sf-tag">📍 New York City</span>
+          <div class="sf-photo asad-owner" style="background-image:url('assets/asad-madaminov-owner.jpg');background-color:#a07050"></div>
+          <span class="sf-tag">Founder</span>
           <div class="sf-meta">
             <b>Asad Madaminov</b>
-            <span>Founder · NYU '21 alumnus</span>
+            <span>Owner · UW-Madison Alumni 2024</span>
           </div>
         </article>
 
         <!-- Card 1 — Right (appears second) -->
         <article class="sf-card" data-order="1">
-          <div class="sf-photo" style="background-image:url('uploads/pasted-1776895160861-0.png');background-color:#8a6040;background:radial-gradient(ellipse at 50% 35%,#d9b89a,#a57a56 55%,transparent 75%),linear-gradient(180deg,#f3eed8,#ddd3b2)"></div>
-          <span class="sf-tag">📍 Toshkent</span>
+          <div class="sf-photo abduqodir-cofounder" style="background-image:url('assets/abduqodir-ubaydullayev-cofounder.png');background-color:#241d18"></div>
+          <span class="sf-tag">Co-founder</span>
           <div class="sf-meta">
-            <b>Co-founder</b>
-            <span>Operations · Embassy liaison</span>
+            <b>Abduqodir Ubaydullayev</b>
+            <span>Co-founder · MADAMI</span>
           </div>
         </article>
 
         <!-- Card 2 — Left (appears third) -->
         <article class="sf-card" data-order="2">
-          <div class="sf-photo" style="background-image:url('uploads/pasted-1776895173025-0.png');background-color:#907060;background:radial-gradient(ellipse at 50% 35%,#c0917a,#8a5a40 55%,transparent 75%),linear-gradient(180deg,#ece6df,#cdc4b7)"></div>
-          <span class="sf-tag">📍 Boston</span>
+          <div class="sf-photo xusan-coordinator" style="background-image:url('assets/image.jpg');background-color:#183247"></div>
+          <span class="sf-tag">Coordinator</span>
           <div class="sf-meta">
-            <b>Dilnoza R.</b>
-            <span>Admissions · Essay coach</span>
+            <b>Xusan Ibragimov</b>
+            <span>Coordinator AUT'29</span>
           </div>
         </article>
 
@@ -1358,18 +1432,18 @@
 
       <div class="staff-roster" id="staff-roster" aria-hidden="true">
         <div class="staff-person">
-          <span class="sp-av" style="background-image:url('uploads/pasted-1776895149186-0.png')"></span>
-          <div><b>Asad Madaminov</b><span>Founder · NYU '21 alumnus</span></div>
+          <span class="sp-av" style="background-image:url('assets/asad-madaminov-owner.jpg');background-position:center bottom"></span>
+          <div><b>Asad Madaminov</b><span>Owner · UW-Madison Alumni 2024</span></div>
           <span class="sp-num">01</span>
         </div>
         <div class="staff-person">
-          <span class="sp-av" style="background-image:url('uploads/pasted-1776895160861-0.png')"></span>
-          <div><b>Co-founder</b><span>Operations · Embassy liaison</span></div>
+          <span class="sp-av" style="background-image:url('assets/abduqodir-ubaydullayev-cofounder.png');background-position:62% center"></span>
+          <div><b>Abduqodir Ubaydullayev</b><span>Co-founder · MADAMI</span></div>
           <span class="sp-num">02</span>
         </div>
         <div class="staff-person">
-          <span class="sp-av" style="background-image:url('uploads/pasted-1776895173025-0.png')"></span>
-          <div><b>Dilnoza R.</b><span>Admissions · Essay coach</span></div>
+          <span class="sp-av" style="background-image:url('assets/image.jpg');background-position:center center"></span>
+          <div><b>Xusan Ibragimov</b><span>Coordinator AUT'29</span></div>
           <span class="sp-num">03</span>
         </div>
       </div>
@@ -1617,18 +1691,48 @@
   </div>
 </footer>
 
-<!-- Video modal -->
-<dialog id="video-modal" style="border:0;border-radius:24px;padding:0;overflow:hidden;max-width:920px;width:90%;aspect-ratio:16/9;background:#000;box-shadow:0 40px 120px #0009">
-  <button onclick="this.closest('dialog').close()" style="position:absolute;top:14px;right:14px;z-index:2;background:#ffffff20;color:#fff;border-radius:999px;padding:8px 14px;font:inherit;border:1px solid #ffffff30">Close ✕</button>
-  <div style="display:grid;place-items:center;height:100%;color:#fff;font-family:Instrument Serif,serif;font-size:40px;text-align:center;padding:40px">Video placeholder<br/><span style="font-size:14px;font-family:Geist,sans-serif;opacity:.6;letter-spacing:.2em;text-transform:uppercase">Intro reel · 2:14</span></div>
-</dialog>
-
 <script>
   // ── Reveal on scroll ───────────────────────────────────
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) }})
   },{threshold:.12});
   document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+
+  // ── Hero video sound toggle ────────────────────────────
+  (function initHeroSoundToggle(){
+    const btn = document.getElementById('heroSoundToggle');
+    const iframe = document.getElementById('heroVideoPlayer');
+    if(!btn || !iframe) return;
+
+    let soundOn = false;
+    const label = btn.querySelector('span');
+
+    function sendYouTubeCommand(func){
+      iframe.contentWindow?.postMessage(JSON.stringify({
+        event: 'command',
+        func,
+        args: []
+      }), '*');
+    }
+
+    btn.addEventListener('click', () => {
+      soundOn = !soundOn;
+      if(soundOn){
+        sendYouTubeCommand('unMute');
+        iframe.contentWindow?.postMessage(JSON.stringify({
+          event: 'command',
+          func: 'setVolume',
+          args: [100]
+        }), '*');
+        sendYouTubeCommand('playVideo');
+      }else{
+        sendYouTubeCommand('mute');
+      }
+      btn.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+      btn.setAttribute('aria-label', soundOn ? 'Mute hero video' : 'Unmute hero video');
+      if(label) label.textContent = soundOn ? 'Sound on' : 'Muted';
+    });
+  })();
 
   // ── Hero card parallax ─────────────────────────────────
   const card = document.getElementById('heroCard');
@@ -1660,7 +1764,7 @@
     const hintEl   = document.getElementById('staff-hint');
     const rosterEl = document.getElementById('staff-roster');
 
-    const names = ['Asad Madaminov', 'Co-founder', 'Dilnoza R.'];
+    const names = ['Asad Madaminov', 'Abduqodir Ubaydullayev', 'Xusan Ibragimov'];
 
     if(!section || !cards.length) return;
 
