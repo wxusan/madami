@@ -1,0 +1,6 @@
+# robots.txt for madami.uz
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://madami.uz/sitemap.xml

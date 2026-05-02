@@ -1,0 +1,11 @@
+{
+  "name": "madami",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Madami Consulting marketing site",
+  "engines": { "node": ">=18.0.0" },
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  }
+}

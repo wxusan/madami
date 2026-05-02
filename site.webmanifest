@@ -1,0 +1,12 @@
+{
+  "name": "Madami Consulting",
+  "short_name": "Madami",
+  "description": "AQSh universitetlariga qabul va viza konsalting",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "background_color": "#F7F6F1",
+  "theme_color": "#1F9D6B",
+  "icons": [
+    { "src": "/assets/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
